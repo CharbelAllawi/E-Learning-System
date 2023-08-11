@@ -1,0 +1,88 @@
+.cards-container {
+    border: 2px solid black;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.the-card {
+    border: 3px solid rgb(189, 189, 189);
+    background-color: rgb(238, 238, 238);
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 400px;
+    max-height: 400px;
+    border-radius: 3px;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0, 1);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+
+}
+
+.the-card:hover {
+    transform: scale(1.02, 1.02);
+    box-shadow: 3px 4px 5px rgba(117, 117, 117, 0.2);
+}
+
+.progressbars-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(204, 204, 204);
+    height: 130px;
+    padding-top: 10px;
+    border-top: 4px solid rgb(128, 128, 128);
+}
+
+.CircularProgressbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CircularProgressbar-container span {
+    font-weight: 700;
+    color: rgb(59, 59, 59);
+    /* padding-top: 5px; */
+}
+
+.CircularProgressbar {
+    cursor: pointer;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0, 1);
+}
+
+.CircularProgressbar:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+    color: rgb(59, 59, 59);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-image: url('https://i.pinimg.com/564x/24/1f/41/241f41cc4059a1aadb9423cac49af45c.jpg');
+    background-size: contain;
+    background-size: cover;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.card-title:hover {
+    text-decoration: underline;
+}
+
+.card-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
