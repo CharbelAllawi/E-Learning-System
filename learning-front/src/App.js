@@ -1,6 +1,8 @@
 import './App.css';
+import Quiz from './components/Quiz';
 import MyCard from './components/courseCard';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'import LandingPage from './components/landing';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+// import LandingPage from './components/landing';
 
 function App() {
   const response = {
@@ -121,6 +123,8 @@ function App() {
             {classes.map(classInfo => (
               <MyCard key={classInfo.name} classInfo={classInfo} />
             ))}
+
+
           </div>}></Route>
         </Routes>
       </BrowserRouter>
