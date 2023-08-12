@@ -1,6 +1,7 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./styles.css"
+
 import Modal from '../modal';
 import Calendly from '../calendly';
 
