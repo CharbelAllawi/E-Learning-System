@@ -1,0 +1,89 @@
+  .card {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .User {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+    text-align: center;
+    margin-left: -80%;
+    margin-top: 10%;
+    padding-bottom: 50px;
+  }
+
+  .quizTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-left: -50%;
+  }
+
+  .upload {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .upload img:hover {
+    cursor: pointer;
+  }
+
+  .uploadbtn {
+    text-decoration: none;
+    background-color: white;
+    border: none;
+  }
+
+  .upload img {
+
+    max-width: 50px;
+    margin-left: 30px;
+  }
+
+  .submittxt {
+    margin: 0;
+    font-weight: bold;
+    margin-left: 150px;
+    white-space: nowrap;
+  }
+
+
+
+
+  .quizDescription {
+    margin-top: 10px;
+    overflow-wrap: break-word;
+  }
+
+  .buttonContainer {
+    margin-top: 10px;
+  }
+
+
+
+
+
+  .btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }

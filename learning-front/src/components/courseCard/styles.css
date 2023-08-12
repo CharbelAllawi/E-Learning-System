@@ -1,0 +1,127 @@
+.cards-container {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.the-card {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    /* margin-left: 80px; */
+    min-width: 460px;
+    max-width: 100px;
+    min-height: 500px;
+    max-height: 500px;
+    /* border-radius: 3px;   */
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0, 1);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
+.CircularProgressbar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CircularProgressbar-container span {
+    font-weight: 700;
+    color: rgb(59, 59, 59);
+}
+
+.CircularProgressbar {
+    cursor: pointer;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0, 1);
+}
+
+.CircularProgressbar:hover {
+    transform: scale(1.1, 1.1);
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/8a/f7f459f9674408947edb8e594a5da3/1200x600_PgM.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50');
+    background-size: contain;
+    background-size: cover;
+}
+
+.card-title {
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.card-title:hover {
+    text-decoration: underline;
+}
+
+.card-subtitle {
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.card-teacher {
+    color: rgb(255, 255, 255);
+}
+
+.enrollbtn, .calendly-div button {
+    display: block;
+    padding: 10px 20px;
+    margin-left: 18%;
+    color: white;
+    background-color: rgb(0, 123, 255);
+    width: 150px;
+    margin-top: 10%;
+    font-size: 16px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.calendly-div button{
+    width: fit-content;
+}
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.progress-details {
+    display: flex;
+    align-items: center;
+}
+
+.CircularProgressbar-container {
+    padding-left: 20px;
+    margin-right: 60px;
+    height: 20%;
+    width: 20%;
+}
+
+.enroll-btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.enroll-btn-container {
+    display: flex;
+    align-items: flex-end;
+}
