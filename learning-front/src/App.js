@@ -1,6 +1,7 @@
 import './App.css';
 import MyCard from './components/courseCard';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'import LandingPage from './components/landing';
+
 function App() {
   const response = {
     "items": [

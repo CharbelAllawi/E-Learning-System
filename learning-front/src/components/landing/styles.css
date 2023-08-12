@@ -1,0 +1,36 @@
+.landing-container{
+    display: flex;
+    height: 85vh;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.landing-left{
+    flex: 1;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.landing-right{
+    flex: 1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-title{
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.btn{
+    width: 100px;
+    height: 35px;
+    font-size: 1rem;
+    background-color: rgb(0, 123, 255);
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: 0;
+}
