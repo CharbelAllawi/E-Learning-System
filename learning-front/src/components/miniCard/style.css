@@ -14,7 +14,7 @@
     border-radius: 5px;
     width: 400px;
     text-align: center;
-    margin-left: -0%;
+    margin-left: -80%;
     margin-top: 10%;
     padding-bottom: 50px;
   }
@@ -35,7 +35,7 @@
     margin-top: 10px;
   }
 
-  .User button {
+  .btn {
     background-color: #007bff;
     color: white;
     border: none;
@@ -44,4 +44,12 @@
     width: 150px;
     height: 30px;
     cursor: pointer;
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
+
+  
