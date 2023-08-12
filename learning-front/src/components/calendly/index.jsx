@@ -1,12 +1,11 @@
 import { PopupButton } from "react-calendly";
-import { PopupWidget } from "react-calendly";
-const Calendly = () => {
+
+import "./styles.css"
+const Calendly = ( {email} ) => {
     return ( 
-        <div>
-        
-            
+        <div className="calendly-div">
             <PopupButton
-        url="https://calendly.com/jaafar-mortada-11"
+        url={email}
         rootElement={document.getElementById("root")}
         text="Click here to schedule!"
       />

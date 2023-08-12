@@ -1,7 +1,9 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./styles.css"
-import Modal from '../Modal';
+import Modal from '../modal';
+import Calendly from '../calendly';
+
 
 const MyCard = ({ classInfo }) => {
 
@@ -18,12 +20,13 @@ const MyCard = ({ classInfo }) => {
                 <span className='card-teacher'>
                     {classInfo.teacher_name}
                 </span>
-                <button className='enrollbtn'>Enroll</button>
+                {/* <button className='enrollbtn'>Enroll</button> */}
+                <Calendly email={classInfo.teacher_email}/>
 
             </div>
 
             <div className='progress-container'>
-                <Modal ></Modal>
+                {/* <Modal></Modal> */}
                 <div className='progress-details'>
                     <div className='CircularProgressbar-container'>
                         <CircularProgressbar
