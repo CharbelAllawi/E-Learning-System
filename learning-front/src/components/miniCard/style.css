@@ -1,47 +1,47 @@
-.card {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-}
+  .card {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
 
 
-.User {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 400px;
-  text-align: center;
-  margin-left: -0%;
-  margin-top: 10%;
-  margin-bottom: -20%;
-}
+  .User {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+    text-align: center;
+    margin-left: -0%;
+    margin-top: 10%;
+    padding-bottom: 50px;
+  }
 
-.quizTitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 40px;
-  margin-left: -50%;
-}
+  .quizTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-left: -50%;
+  }
 
-.quizDescription {
-  margin-top: 10px;
-  overflow-wrap: break-word;
-}
+  .quizDescription {
+    margin-top: 10px;
+    overflow-wrap: break-word;
+  }
 
-.buttonContainer {
-  margin-top: 10px;
-}
+  .buttonContainer {
+    margin-top: 10px;
+  }
 
-.User button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
-  width: 150px;
-  height: 30px;
-  cursor: pointer;
-}
+  .User button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+  }
