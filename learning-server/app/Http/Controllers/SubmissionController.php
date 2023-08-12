@@ -12,11 +12,13 @@ class SubmissionController extends Controller
     public function postassignment(Request $request)
     {
         $user = Auth::user();
-        $destination_path = "public/files/submissions/";
+        $destination_path = "public/submissions/";
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
+            $original_file_name = $file->getClientOriginalName();
+            $timestamp = now()->format('Ymd_His');
+            $file_name = $timestamp . '_' . $original_file_name;
             $path = $request->file('file')->storeAs($destination_path, $file_name);
 
             $submission = new Submission([
@@ -31,5 +33,5 @@ class SubmissionController extends Controller
         }
 
         return response()->json(['message' => 'File not found'], 400);
-    }   
+    }
 }

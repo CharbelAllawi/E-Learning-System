@@ -139,11 +139,11 @@ function App() {
                 <MyCard key={classInfo.name} classInfo={classInfo} />
               ))}
 
-              <Modal/>
-          </div>
-        }></Route>
-          
-          
+              <Modal />
+            </div>
+          }></Route>
+
+
           <Route path='landing' element={<LandingPage />}></Route>
 
         </Routes>
