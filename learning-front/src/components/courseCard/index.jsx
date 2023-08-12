@@ -1,8 +1,11 @@
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./styles.css"
+import Modal from '../Modal';
 
 const MyCard = ({ classInfo }) => {
+
+
     return (
         <div className="the-card">
             <div className='card-details'>
@@ -20,6 +23,7 @@ const MyCard = ({ classInfo }) => {
             </div>
 
             <div className='progress-container'>
+                <Modal ></Modal>
                 <div className='progress-details'>
                     <div className='CircularProgressbar-container'>
                         <CircularProgressbar
