@@ -134,15 +134,18 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={
-          <div className="cards-container">
-            {classes.map(classInfo => (
-              <MyCard key={classInfo.name} classInfo={classInfo} />
-            ))}
+            <div className="cards-container">
+              {classes.map(classInfo => (
+                <MyCard key={classInfo.name} classInfo={classInfo} />
+              ))}
 
               <Modal/>
           </div>
         }></Route>
-        <Route path='/landing' element={<LandingPage/>}/>
+          
+          
+          <Route path='landing' element={<LandingPage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
