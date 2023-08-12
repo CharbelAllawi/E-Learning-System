@@ -1,6 +1,5 @@
 import { PopupButton } from "react-calendly";
 
-import "./styles.css"
 const Calendly = ( {email} ) => {
     return ( 
         <div className="calendly-div">
