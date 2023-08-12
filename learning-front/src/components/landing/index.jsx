@@ -11,8 +11,8 @@ const LandingPage = () => {
                     <span className="landing-title">Learn without limits</span>
                     <span>Start, switch, or advance your career with our amazing courses, 
                         Professional Certificates, and degrees from world-class universities and 
-                        companies.</span><Calendly />
-                        <button className="btn">Sign in</button>
+                        companies.</span>
+                        <button className="landing-signin-btn">Sign in</button>
                 </div>
                 <div className="landing-right">
                     <img src={landingImg}/>

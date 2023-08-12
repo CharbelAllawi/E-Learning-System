@@ -90,8 +90,11 @@
     font-size: 1.5rem;
     font-weight: 600;
 }
+.card-teacher {
+    color: rgb(255, 255, 255);
+}
 
-.enrollbtn {
+.enrollbtn, .calendly-div button {
     display: block;
     padding: 10px 20px;
     margin-left: 18%;
@@ -110,6 +113,9 @@
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
+.calendly-div button{
+    width: fit-content;
+}
 .progress-container {
     display: flex;
     justify-content: space-between;
