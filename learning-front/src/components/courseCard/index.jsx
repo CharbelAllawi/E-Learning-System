@@ -13,16 +13,16 @@ const MyCard = ({ classInfo }) => {
         <div className="the-card">
             <div className='card-details'>
                 <span className='card-title'>
-                    {classInfo.name}
+                    {classInfo.title}
                 </span>
                 <span className='card-subtitle'>
                     {classInfo.description}
                 </span>
                 <span className='card-teacher'>
-                    {classInfo.teacher_name}
+                    {classInfo.teacher_id}
                 </span>
                 {/* <button className='enrollbtn'>Enroll</button> */}
-                <Calendly email={classInfo.teacher_email}/>
+                <Calendly email={classInfo.meeting_url}/>
 
             </div>
 

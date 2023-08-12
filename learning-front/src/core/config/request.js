@@ -1,7 +1,6 @@
 import axios from "axios";
-import { localStorageAction } from "./localstorage";
 
-axios.defaults.baseURL = "http://34.249.210.79/api";
+axios.defaults.baseURL = "http://127.0.0.1:8000/api";
 
 export const sendRequest = async ({
   method = "GET",
