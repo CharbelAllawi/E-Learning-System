@@ -26,6 +26,38 @@
     margin-left: -50%;
   }
 
+  .upload {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+  }
+
+  .upload img:hover {
+    cursor: pointer;
+  }
+
+  .uploadbtn {
+    text-decoration: none;
+    background-color: white;
+    border: none;
+  }
+
+  .upload img {
+
+    max-width: 50px;
+    margin-left: 30px;
+  }
+
+  .submittxt {
+    margin: 0;
+    font-weight: bold;
+    margin-left: 150px;
+    white-space: nowrap;
+  }
+
+
+
+
   .quizDescription {
     margin-top: 10px;
     overflow-wrap: break-word;
@@ -34,6 +66,10 @@
   .buttonContainer {
     margin-top: 10px;
   }
+
+
+
+
 
   .btn {
     background-color: #007bff;
@@ -51,5 +87,3 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
-
-  

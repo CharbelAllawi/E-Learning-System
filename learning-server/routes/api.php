@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\CourseController;
 
 
 
@@ -12,6 +13,7 @@ use App\Http\Controllers\SubmissionController;
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
+Route::get('/get_courses', [CourseController::class, 'getCourses']);
 
 Route::controller(AuthController::class)->group(function () {
 
