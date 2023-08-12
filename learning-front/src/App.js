@@ -2,7 +2,7 @@ import './App.css';
 import Quiz from './components/Quiz';
 import MyCard from './components/courseCard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-// import LandingPage from './components/landing';
+import LandingPage from './components/landing';
 
 function App() {
   const response = {
@@ -133,14 +133,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={
-          <div className="cards-container">
-            {classes.map(classInfo => (
-              <MyCard key={classInfo.name} classInfo={classInfo} />
-            ))}
+            <div className="cards-container">
+              {classes.map(classInfo => (
+                <MyCard key={classInfo.name} classInfo={classInfo} />
+              ))}
 
 
-          </div>
-        }></Route>
+            </div>
+          }></Route>
+          <Route path='landing' element={<LandingPage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
