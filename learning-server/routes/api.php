@@ -11,10 +11,10 @@ use App\Http\Controllers\ParentController;
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
-Route::get('/get_courses', [CourseController::class, 'getCourses']);
+Route::get('/get_courses/{name?}', [CourseController::class, 'getCourses']);
+Route::get('/get_children', [CourseController::class, 'getChildren']);
 Route::get('getstudents', [ParentController::class, 'getStudents']);
 Route::get('getattendance', [AttendanceController::class, 'getattendance']);
-
 Route::controller(AuthController::class)->group(function () {
 
     Route::post('login', 'login');
