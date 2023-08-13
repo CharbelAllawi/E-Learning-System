@@ -50,12 +50,12 @@ class User extends Authenticatable implements JWTSubject
 
     public function parentOf()
     {
-        return $this->hasMany(ParentModel::class, 'parent_id');
+        return $this->hasMany(ParentModal::class, 'parent_id');
     }
 
     public function childOf()
     {
-        return $this->hasOne(ParentModel::class, 'student_id');
+        return $this->hasOne(ParentModal::class, 'student_id');
     }
 
     public function sentNotifications()

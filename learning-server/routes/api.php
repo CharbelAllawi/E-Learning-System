@@ -14,7 +14,7 @@ Route::post('enroll', [EnrollmentController::class, 'enroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
 Route::get('/get_courses', [CourseController::class, 'getCourses']);
-Route::post('/get_parent_courses', [CourseController::class, 'getParentCourses']);
+Route::get('/get_children', [CourseController::class, 'getChildren']);
 
 Route::controller(AuthController::class)->group(function () {
 
