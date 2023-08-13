@@ -55,7 +55,6 @@ const Quiz = () => {
     } else {
       setShowScore(true);
       setTimeout(() => {
-        document.querySelector(".app").style.display = "none"
       }, 5000);
     }
   };

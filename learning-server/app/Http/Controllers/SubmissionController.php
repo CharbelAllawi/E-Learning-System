@@ -11,9 +11,8 @@ class SubmissionController extends Controller
 {
     public function postassignment(Request $request)
     {
-        $studentid = Auth::id();
         $destination_path = "public/submissions/";
-        $course_id = $request->course_id;
+        $material_id = $request->material_id;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $original_file_name = $file->getClientOriginalName();
@@ -27,9 +26,7 @@ class SubmissionController extends Controller
             ]);
             $assignment->save();
             $assignment_id = $assignment->id;
-            $material = Material::where('student_id', $studentid)
-                ->where('course_id', 31)->where('quiz_id', NULL)
-                ->first();
+            $material = Material::where('id', $material_id)->first();
 
             if (!$material) {
                 return response()->json(['message' => 'Material not found'], 404);
