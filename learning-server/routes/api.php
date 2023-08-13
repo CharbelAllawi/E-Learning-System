@@ -13,7 +13,7 @@ use App\Http\Controllers\CourseController;
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
-Route::get('/get_courses', [CourseController::class, 'getCourses']);
+Route::get('/get_courses/{name?}', [CourseController::class, 'getCourses']);
 Route::get('/get_children', [CourseController::class, 'getChildren']);
 
 Route::controller(AuthController::class)->group(function () {
