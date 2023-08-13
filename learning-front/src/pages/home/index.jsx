@@ -11,12 +11,12 @@ const HomePage = () => {
 const getCoursesHandler = async () => {
     try {
         const response = await sendRequest({
-            route: "/get_courses",
+            method: "GET",
+            route: "/api/get_courses",
         });
         setCourses(response.status)
     } catch (error) {
         console.log(error);
-        setError(error.message);
     }
 };
 
