@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ParentModal extends Model
 {
+    protected $table = 'Parents';
+
     use HasFactory;
     public function parent()
     {

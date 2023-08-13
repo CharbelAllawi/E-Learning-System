@@ -4,77 +4,117 @@ import "./styles.css"
 
 import Modal from '../modal';
 import Calendly from '../calendly';
+import { useState } from 'react';
 
 
 const MyCard = ({ classInfo }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalData, setmodalData] = useState('');
+    const [modalChoice, setmodalChoice] = useState('');
+    function openModal(data, type) {
+        if (type == "Sessions") {
+            const Sessions = data.student_materials.filter(item => item.title.startsWith('Session'));
+            setIsModalOpen(true);
+            setmodalData(Sessions);
+            setmodalChoice("Session");
+        }
+        if (type == "Assignments") {
+            const Assignments = data.student_materials.filter(item => item.title.startsWith('Assignment'));
+            setIsModalOpen(true);
+            setmodalData(Assignments);
+            setmodalChoice("Assignment");
+
+        }
+        if (type == "Quizzes") {
+            const Quizzes = data.student_materials.filter(item => item.title.startsWith('Quiz'));
+            setIsModalOpen(true);
+            setmodalData(Quizzes);
+            setmodalChoice("Quiz");
+
+        }
+    }
+
+
+
+
+    function closeModal() {
+        setIsModalOpen(false);
+        setmodalData('');
+
+    }
 
 
     return (
-        <div className="the-card">
-            <div className='card-details'>
-                <span className='card-title'>
-                    {classInfo.name}
-                </span>
-                <span className='card-subtitle'>
-                    {classInfo.description}
-                </span>
-                <span className='card-teacher'>
-                    {classInfo.teacher_name}
-                </span>
-                {/* <button className='enrollbtn'>Enroll</button> */}
-                <Calendly email={classInfo.teacher_email}/>
+        <>
+            {isModalOpen && (
+                <Modal choice={modalChoice} data={modalData} isOpen={isModalOpen} onClose={closeModal} />
+            )}
+            <div className="the-card">
+                <div className='card-details'>
+                    <span className='card-title'>
+                        {classInfo.title}
+                    </span>
+                    <span className='card-subtitle'>
+                        {classInfo.description}
+                    </span>
 
-            </div>
+                    <span className='card-teacher'>
+                        {classInfo.teacher_name}
+                    </span>
+                    <Calendly email={classInfo.teacher_email} />
 
-            <div className='progress-container'>
-                {/* <Modal></Modal> */}
-                <div className='progress-details'>
-                    <div className='CircularProgressbar-container'>
-                        <CircularProgressbar
-                            value={(5 / classInfo.number_of_sessions) * 100}
-                            text={`${Math.ceil((5 / classInfo.number_of_sessions) * 100)}%`}
-                            styles={buildStyles({
-                                textSize: '1.5rem',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `rgba(62, 152, 199, ${((5 / classInfo.number_of_sessions) * 100) / 100})`,
-                                textColor: 'rgb(62, 152, 199)',
-                                backgroundColor: 'rgb(117, 117, 117)',
-                            })}
-                        />
-                        <span>Sessions</span>
+                </div >
+
+                <div className='progress-container'>
+                    <div className='progress-details'>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Sessions")}>
+                            <CircularProgressbar
+                                value={(5 / classInfo.number_of_sessions) * 100}
+                                text={`${Math.ceil((5 / classInfo.number_of_sessions) * 100)}%`}
+                                styles={buildStyles({
+                                    textSize: '1.5rem',
+                                    pathTransitionDuration: 0.5,
+                                    pathColor: `rgba(62, 152, 199, ${((5 / classInfo.number_of_sessions) * 100) / 100})`,
+                                    textColor: 'rgb(62, 152, 199)',
+                                    backgroundColor: 'rgb(117, 117, 117)',
+                                })}
+                            />
+                            <span>Sessions</span>
+                        </div>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Assignments")}>
+                            <CircularProgressbar
+                                value={(5 / classInfo.number_of_assignments) * 100}
+                                text={`${Math.ceil((5 / classInfo.number_of_assignments) * 100)}%`}
+                                styles={buildStyles({
+                                    textSize: '1.5rem',
+                                    pathTransitionDuration: 0.5,
+                                    pathColor: `rgba(34, 150, 50, ${(5 / classInfo.number_of_assignments) * 100})`,
+                                    textColor: 'rgb(34, 150, 50)',
+                                    backgroundColor: 'rgb(117, 117, 117)',
+                                })}
+                            />
+                            <span>Assignments</span>
+                        </div>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Quizzes")}>
+                            <CircularProgressbar
+                                value={(2 / classInfo.number_of_quizzes) * 100}
+                                text={`${Math.ceil((2 / classInfo.number_of_quizzes) * 100)}%`}
+                                styles={buildStyles({
+                                    textSize: '1.5rem',
+                                    pathTransitionDuration: 0.5,
+                                    pathColor: `rgba(230, 50, 50, ${(2 / classInfo.number_of_quizzes) * 100})`,
+                                    textColor: 'rgb(230, 50, 50)',
+                                    backgroundColor: 'rgb(117, 117, 117)',
+                                })}
+                            />
+                            <span>Quizzes</span>
+                        </div>
                     </div>
-                    <div className='CircularProgressbar-container'>
-                        <CircularProgressbar
-                            value={(5 / classInfo.number_of_assignments) * 100}
-                            text={`${Math.ceil((5 / classInfo.number_of_assignments) * 100)}%`}
-                            styles={buildStyles({
-                                textSize: '1.5rem',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `rgba(34, 150, 50, ${(5 / classInfo.number_of_assignments) * 100})`,
-                                textColor: 'rgb(34, 150, 50)',
-                                backgroundColor: 'rgb(117, 117, 117)',
-                            })}
-                        />
-                        <span>Assignments</span>
-                    </div>
-                    <div className='CircularProgressbar-container'>
-                        <CircularProgressbar
-                            value={(2 / classInfo.number_of_quizzes) * 100}
-                            text={`${Math.ceil((2 / classInfo.number_of_quizzes) * 100)}%`}
-                            styles={buildStyles({
-                                textSize: '1.5rem',
-                                pathTransitionDuration: 0.5,
-                                pathColor: `rgba(230, 50, 50, ${(2 / classInfo.number_of_quizzes) * 100})`,
-                                textColor: 'rgb(230, 50, 50)',
-                                backgroundColor: 'rgb(117, 117, 117)',
-                            })}
-                        />
-                        <span>Quizzes</span>
-                    </div>
+
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </>
     );
 }
 
