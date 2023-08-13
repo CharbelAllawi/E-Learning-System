@@ -53,6 +53,13 @@
     background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/8a/f7f459f9674408947edb8e594a5da3/1200x600_PgM.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50');
     background-size: contain;
     background-size: cover;
+    transition: transform 0.3s ease;
+
+}
+
+.the-card:hover {
+    cursor: pointer;
+    transform: scale(0.9);
 }
 
 .card-title {
@@ -66,16 +73,20 @@
     text-decoration: underline;
 }
 
+
+
 .card-subtitle {
     color: rgb(255, 255, 255);
     font-size: 1.5rem;
     font-weight: 600;
 }
+
 .card-teacher {
     color: rgb(255, 255, 255);
 }
 
-.enrollbtn, .calendly-div button {
+.enrollbtn,
+.calendly-button {
     display: block;
     padding: 10px 20px;
     margin-left: 18%;
@@ -94,9 +105,16 @@
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-.calendly-div button{
+.calendly-button {
     width: fit-content;
 }
+
+.calendly-button:hover {
+
+    background-color: rgb(53, 150, 53);
+
+}
+
 .progress-container {
     display: flex;
     justify-content: space-between;

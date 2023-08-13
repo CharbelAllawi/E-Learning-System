@@ -138,8 +138,6 @@ function App() {
               {classes.map(classInfo => (
                 <MyCard key={classInfo.name} classInfo={classInfo} />
               ))}
-
-              <Modal />
             </div>
           }></Route>
 
