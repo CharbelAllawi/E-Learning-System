@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ParentModal;
-use App\Models\Session;
-use App\Models\Attendance;
-use App\Models\Course;
-use App\Models\Enrollment;
-use App\Models\StudentAnswer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
