@@ -8,13 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     use HasFactory;
-    public function material()
-    {
-        return $this->belongsTo(Material::class);
-    }
-
-    public function questions()
-    {
-        return $this->hasMany(Question::class);
-    }
 }
