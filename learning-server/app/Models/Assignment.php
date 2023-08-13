@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Assignment extends Model
 {
+    protected $fillable = [
+        'submission_path',
+
+    ];
+
     use HasFactory;
-    public function material()
-    {
-        return $this->belongsTo(Material::class);
-    }
 }

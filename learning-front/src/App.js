@@ -141,11 +141,11 @@ function App() {
               {classes.map(classInfo => (
                 <MyCard key={classInfo.name} classInfo={classInfo} />
               ))}
-              <Modal/>
-          </div>
-        }></Route>
-          
-          <Route path='/home' element={
+              <Modal />
+            </div>
+          }></Route>
+
+<Route path='/home' element={
             <HomePage/>
           }/>
           <Route path='landing' element={<LandingPage />}></Route>
