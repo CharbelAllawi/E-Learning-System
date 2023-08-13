@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 import MiniCard from '../miniCard';
 
-const Modal = ({ isOpen, onClose, info }) => {
+const Modal = ({ choice, data, isOpen, onClose }) => {
+  const modalContent = {
+    Quiz: {
+      title: 'Quizzes Details',
+    },
+    Assignment: {
+      title: 'Assignment Details',
+    },
+    Session: {
+      title: 'Session Details',
+    },
+  };
+
+  const content = modalContent[choice];
+
   return (
-    <div>
+    <>
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal">
@@ -12,18 +26,15 @@ const Modal = ({ isOpen, onClose, info }) => {
               <span className="close" onClick={onClose}>
                 &times;
               </span>
-              <div className='h1div'>
-                <h1>Quizzes Details</h1>
+              <div className="h1div">
+                <h1>{content.title}</h1>
               </div>
-              <MiniCard />
-              <MiniCard />
-              <MiniCard />
-              <MiniCard />
+              <MiniCard data={data} choice={choice} />
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

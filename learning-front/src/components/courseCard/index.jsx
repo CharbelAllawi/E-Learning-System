@@ -9,18 +9,37 @@ import { useState } from 'react';
 
 const MyCard = ({ classInfo }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalOption, setModalOption] = useState('');
+    const [modalData, setmodalData] = useState('');
+    const [modalChoice, setmodalChoice] = useState('');
+    function openModal(data, type) {
+        if (type == "Sessions") {
+            const Sessions = data.student_materials.filter(item => item.title.startsWith('Session'));
+            setIsModalOpen(true);
+            setmodalData(Sessions);
+            setmodalChoice("Session");
+        }
+        if (type == "Assignments") {
+            const Assignments = data.student_materials.filter(item => item.title.startsWith('Assignment'));
+            setIsModalOpen(true);
+            setmodalData(Assignments);
+            setmodalChoice("Assignment");
 
-    function openModal(option) {
-        console.log(option)
-        setIsModalOpen(true);
-        setModalOption(option);
+        }
+        if (type == "Quizzes") {
+            const Quizzes = data.student_materials.filter(item => item.title.startsWith('Quiz'));
+            setIsModalOpen(true);
+            setmodalData(Quizzes);
+            setmodalChoice("Quiz");
 
+        }
     }
+
+
+
 
     function closeModal() {
         setIsModalOpen(false);
-        setModalOption('');
+        setmodalData('');
 
     }
 
@@ -28,12 +47,12 @@ const MyCard = ({ classInfo }) => {
     return (
         <>
             {isModalOpen && (
-                <Modal option={modalOption} isOpen={isModalOpen} onClose={closeModal} />
+                <Modal choice={modalChoice} data={modalData} isOpen={isModalOpen} onClose={closeModal} />
             )}
             <div className="the-card">
-                <div className='card-details' >
-                    <span className='card-title' onClick={openModal}>
-                        {classInfo.name}
+                <div className='card-details'>
+                    <span className='card-title'>
+                        {classInfo.title}
                     </span>
                     <span className='card-subtitle'>
                         {classInfo.description}
@@ -48,7 +67,7 @@ const MyCard = ({ classInfo }) => {
 
                 <div className='progress-container'>
                     <div className='progress-details'>
-                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo)}>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Sessions")}>
                             <CircularProgressbar
                                 value={(5 / classInfo.number_of_sessions) * 100}
                                 text={`${Math.ceil((5 / classInfo.number_of_sessions) * 100)}%`}
@@ -62,7 +81,7 @@ const MyCard = ({ classInfo }) => {
                             />
                             <span>Sessions</span>
                         </div>
-                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo)}>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Assignments")}>
                             <CircularProgressbar
                                 value={(5 / classInfo.number_of_assignments) * 100}
                                 text={`${Math.ceil((5 / classInfo.number_of_assignments) * 100)}%`}
@@ -76,7 +95,7 @@ const MyCard = ({ classInfo }) => {
                             />
                             <span>Assignments</span>
                         </div>
-                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo)}>
+                        <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Quizzes")}>
                             <CircularProgressbar
                                 value={(2 / classInfo.number_of_quizzes) * 100}
                                 text={`${Math.ceil((2 / classInfo.number_of_quizzes) * 100)}%`}

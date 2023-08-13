@@ -4,7 +4,8 @@ import MyCard from './components/courseCard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Modal from './components/modal';
 import LandingPage from './components/landing';
-
+import NavBar from './components/navbar';
+import HomePage from './pages/home';
 function App() {
   const response = {
     "items": [
@@ -132,16 +133,20 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path='/' element={
             <div className="cards-container">
               {classes.map(classInfo => (
                 <MyCard key={classInfo.name} classInfo={classInfo} />
               ))}
+              <Modal />
             </div>
           }></Route>
 
-
+          <Route path='/home' element={
+            <HomePage />
+          } />
           <Route path='landing' element={<LandingPage />}></Route>
 
         </Routes>
