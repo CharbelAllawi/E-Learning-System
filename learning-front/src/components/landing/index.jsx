@@ -3,7 +3,7 @@ import Calendly from "../calendly";
 import NavBar from "../navbar"
 import landingImg from './landing.svg'
 import './styles.css'
-import LoginForm from "../forms";
+import LoginForm from "../forms/login";
 const LandingPage = () => {
     localStorage.clear()
     const [showSignIn, setShowSignIn] = useState(false)

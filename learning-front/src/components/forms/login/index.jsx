@@ -1,8 +1,8 @@
-import logo from '../../ELearning.svg';
+import logo from '../../../ELearning.svg';
 import { useNavigate } from 'react-router-dom';
 import "./styles.css";
 import { useState } from 'react';
-import { sendRequest } from '../../core/config/request';
+import { sendRequest } from '../../../core/config/request';
 const LoginForm = (userType) => {
     
     const navigate = useNavigate()
