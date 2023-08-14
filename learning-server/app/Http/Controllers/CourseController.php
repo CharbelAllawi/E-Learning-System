@@ -27,7 +27,7 @@ class CourseController extends Controller
             if ($course->isEnrolled) {
                 $course->student_materials = $course->materials->where('student_id', $user->id)
                     ->each(function ($material) {
-                        unset($material->student_id);
+                        // unset($material->student_id);
                         unset($material->created_at);
                         unset($material->updated_at);
                     });
