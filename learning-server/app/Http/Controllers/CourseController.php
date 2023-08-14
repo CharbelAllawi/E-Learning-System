@@ -27,7 +27,7 @@ class CourseController extends Controller
             if ($course->isEnrolled) {
                 $course->student_materials = $course->materials->where('student_id', $user->id)
                     ->each(function ($material) {
-                        unset($material->student_id);
+                        // unset($material->student_id);
                         unset($material->created_at);
                         unset($material->updated_at);
                     });
@@ -93,10 +93,11 @@ class CourseController extends Controller
         return response()->json(['message' => 'Enrollment successful'], 201);
     }
 
-    function enrollInCourse(Request $request) {
+    function enrollInCourse(Request $request)
+    {
         $user = Auth::user();
         $course_id = $request->course_id;
-        if(Enrollment::where('student_id', $user->id)->where('course_id', $course_id)->first()){
+        if (Enrollment::where('student_id', $user->id)->where('course_id', $course_id)->first()) {
             return response()->json([
                 'message' => 'already enrolled'
             ]);
