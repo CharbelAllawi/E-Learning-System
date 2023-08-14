@@ -1,0 +1,17 @@
+.parents-home-body{
+    display: flex;
+}
+
+
+.student-cards-container{
+    display: flex;
+    flex-flow: column nowrap;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 35vw;
+    gap: 1rem;
+    padding: 20px 10px 20px;
+    border-right: 1px solid rgb(105, 105, 105);
+}

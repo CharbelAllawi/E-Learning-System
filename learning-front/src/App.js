@@ -5,8 +5,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Modal from './components/modal';
 import LandingPage from './components/landing';
 import NavBar from './components/navbar';
-import HomePage from './pages/home';
+import HomePage from './pages/studentHome';
 import { EnrollmentStateProvider } from './global/context';
+import StudentCard from './components/studentCard';
+import ParentHome from './pages/parentHome';
 function App() {
 
 
@@ -16,7 +18,8 @@ function App() {
       <EnrollmentStateProvider value={true}>
         <NavBar />
           <Routes>
-            <Route path='/home' element={ <HomePage /> } />
+            <Route path='/home' element={ 
+              (localStorage.getItem('usertype') == 'Student')? <HomePage />: <ParentHome/> } />
             <Route path='landing' element={<LandingPage />}></Route>
           </Routes>
         </EnrollmentStateProvider>

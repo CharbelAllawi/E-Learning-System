@@ -5,6 +5,7 @@ import landingImg from './landing.svg'
 import './styles.css'
 import LoginForm from "../forms";
 const LandingPage = () => {
+    localStorage.clear()
     const [showSignIn, setShowSignIn] = useState(false)
     const [usertype, setUSerType] = useState('')
 
