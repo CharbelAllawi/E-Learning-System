@@ -14,7 +14,7 @@ const getCoursesHandler = async () => {
             method: "GET",
             route: "/api/get_courses",
         });
-        setCourses(response.status)
+        setCourses(response.courses)
     } catch (error) {
         console.log(error);
     }

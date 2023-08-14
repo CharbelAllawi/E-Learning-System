@@ -12,21 +12,22 @@ const MyCard = ({ classInfo }) => {
     const [modalData, setmodalData] = useState('');
     const [modalChoice, setmodalChoice] = useState('');
     function openModal(data, type) {
+        console.log(data)
         if (type == "Sessions") {
-            const Sessions = data.student_materials.filter(item => item.title.startsWith('Session'));
+            const Sessions = Object.values(data.student_materials).filter(item => item.title.startsWith('Session'));
             setIsModalOpen(true);
             setmodalData(Sessions);
             setmodalChoice("Session");
         }
         if (type == "Assignments") {
-            const Assignments = data.student_materials.filter(item => item.title.startsWith('Assignment'));
+            const Assignments = Object.values(data.student_materials).filter(item => item.title.startsWith('Assignment'));
             setIsModalOpen(true);
             setmodalData(Assignments);
             setmodalChoice("Assignment");
 
         }
         if (type == "Quizzes") {
-            const Quizzes = data.student_materials.filter(item => item.title.startsWith('Quiz'));
+            const Quizzes = Object.values(data.student_materials).filter(item => item.title.startsWith('Quiz'));
             setIsModalOpen(true);
             setmodalData(Quizzes);
             setmodalChoice("Quiz");
