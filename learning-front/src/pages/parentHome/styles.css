@@ -15,3 +15,18 @@
     padding: 20px 10px 20px;
     border-right: 1px solid rgb(105, 105, 105);
 }
+
+.Child-courses-contained{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    min-height: 100px;
+    max-width: 65vw;
+    align-items: center;
+}
+
+.empty-child-course-container{
+    font-size: 2rem;
+    font-weight: 600;
+    padding-left: 40px;
+}
