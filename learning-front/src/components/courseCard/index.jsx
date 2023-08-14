@@ -14,11 +14,9 @@ const MyCard = ({ classInfo }) => {
     const [number_of_done_quizzes, set_number_of_done_quizzes] = useState(0);
     const [number_of_done_assignments, set_number_of_done_assignments] = useState(0);
     function openModal(data, type) {
-        console.log(data)
         if (type == "Sessions") {
-            const Sessions = Object.values(data.student_materials).filter(item => item.title.startsWith('Session'));
             setIsModalOpen(true);
-            setmodalData(Sessions);
+            setmodalData(data);
             setmodalChoice("Session");
         }
         if (type == "Assignments") {
@@ -141,10 +139,8 @@ const MyCard = ({ classInfo }) => {
                             <span>Quizzes</span>
                         </div>
                     </div>
-
-                </div>
-                : ""}
-
+                        </div>
+                        : ""}
             </div >
         </>
     );
