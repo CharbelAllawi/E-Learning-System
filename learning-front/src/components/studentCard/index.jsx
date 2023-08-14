@@ -1,6 +1,6 @@
 import './styles.css'
 
-const StudentCard = ({childName, onCall}) => {
+const SideBarCard = ({name, onCall}) => {
     const border_colors = [
         'rgb(255, 153, 0)',
         'rgb(0, 123, 255)',
@@ -28,9 +28,9 @@ const StudentCard = ({childName, onCall}) => {
     
     return ( 
         <div onClick={onCall} className='student-card' style={ {backgroundColor: random_color, borderLeft: `3px solid ${random_border_color}`}}>
-            <span className='student-card-name-text'>{childName}</span>
+            <span className='student-card-name-text'>{name}</span>
         </div>
     );
 }
 
-export default StudentCard;
+export default SideBarCard;
