@@ -5,7 +5,7 @@ import "./styles.css"
 import Modal from '../modal';
 import Calendly from '../calendly';
 import { useState } from 'react';
-
+import { sendRequest } from '../../core/config/request';
 
 const MyCard = ({ classInfo }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +39,23 @@ const MyCard = ({ classInfo }) => {
         setmodalData('');
     }
 
+    const enrollHandler = async (course_id) => {
+        try {
+            const enrollData = new FormData();
+            enrollData.append('course_id', course_id);
+            const response = await sendRequest({
+                method: "POST",
+                route: "/api/enroll",
+                body: enrollData,
+            });
+            if(response.message === "enrolled successfully"){
+                document.getElementById(`enroll-${classInfo.id}`).innerHTML = "Success"
+                document.getElementById(`enroll-${classInfo.id}`).style.backgroundColor = "rgb(53, 150, 53)"
+            }
+        } catch (error) {
+            console.log(error);
+        }}
+    
     return (
         <>
             {isModalOpen && (
@@ -60,7 +77,7 @@ const MyCard = ({ classInfo }) => {
                     {
                         classInfo.isEnrolled?
                             <Calendly email={classInfo.meeting_url} />
-                        : <button className='enrollbtn'>Enroll</button>
+                        : <button id={`enroll-${classInfo.id}`} className='enrollbtn' onClick={() => enrollHandler(classInfo.id)}>Enroll</button>
                     }
                     </div>
                 </div >

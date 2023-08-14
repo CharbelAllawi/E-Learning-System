@@ -5,10 +5,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Modal from './components/modal';
 import LandingPage from './components/landing';
 import NavBar from './components/navbar';
-import HomePage from './pages/studentHome';
+import HomePage from './pages/studentHome/index.jsx';
+import ParentHome from './pages/parentHome/index.jsx';
 import { EnrollmentStateProvider } from './global/context';
 import StudentCard from './components/studentCard';
-import ParentHome from './pages/parentHome';
+
 function App() {
 
 
