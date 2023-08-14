@@ -40,6 +40,7 @@ const AddAssignmentForm = () => {
                 placeholder={"Enter assignment Due Date"}
                 onChange={handleDataChange}
             />
+            <button className='teacher-option-btn submit'>Submit</button>
         </div>
     );
 }

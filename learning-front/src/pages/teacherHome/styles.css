@@ -44,8 +44,8 @@
 }
 
 .submit{
-    margin-top: -3rem;
     width: 100px;
+    align-self: flex-end;
 }
 
 .teacher-option-btn:hover {
