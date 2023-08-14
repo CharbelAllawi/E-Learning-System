@@ -19,5 +19,4 @@ class ParentModal extends Model
     {
         return $this->belongsTo(User::class, 'student_id');
     }
-    protected $table = 'parents';
 }

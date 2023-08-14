@@ -5,10 +5,28 @@ import uploadpng from "./upload.png"
 import { sendRequest } from '../../core/config/request';
 
 const MiniCard = ({ data, choice }) => {
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const handleQuizButtonClick = () => {
-    setShowQuiz(true);
+  const [showQuiz, setShowQuiz] = useState({});
+  const [questions, setQuestions] = useState([])
+  const handleQuizButtonClick = async (quizId) => {
+    try {
+      const formData = new FormData();
+      formData.append('quiz_id', quizId);
+        const response = await sendRequest({
+          route: "/api/get_questions",
+          method: "POST",
+          body: formData,
+          headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+        });
+        setQuestions(eval(response.questions));
+      } catch (error) {
+        console.log(error);
+      }
+    setShowQuiz(prevState => ({
+      ...prevState,
+      [quizId]: true
+    }))
   };
   const handleFileChange = async (event, material_id) => {
     const file = event.target.files[0];
@@ -60,15 +78,15 @@ const MiniCard = ({ data, choice }) => {
         {choice === "Quiz" && (
           <ul>
             {data.map(quiz => (
-              <li key={quiz.id} className="User">
+              <li key={quiz.quiz_id} className="User">
                 <span className="alltitle">{quiz.title}</span>
                 <span className='alldesc'>
                   <span className='alldescription'>{quiz.description}</span>
                 </span>
-                {!showQuiz ? (
-                  <button className="btn" onClick={handleQuizButtonClick}>Take Quiz</button>
+                {!showQuiz[quiz.quiz_id] ? (
+                  <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button>
                 ) : (
-                  <Quiz />
+                  <Quiz key={quiz.quiz_id} quizData={questions} quizId={quiz.quiz_id}/>
                 )}
               </li>
             ))}

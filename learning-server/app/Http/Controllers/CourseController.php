@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Material;
+use App\Models\Quiz;
 use App\Models\User;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -51,5 +53,20 @@ class CourseController extends Controller
         }
         return response()->json(['status' => 'success',
                                 'children' => $names]);
+    }
+
+    function getQuestions(Request $request) {
+        $user = Auth::user();
+        try{
+            if(Material::where('id', $request->id)->where('student_id', $user->id)){
+                $questions = Quiz::where('id', $request->quiz_id)->first();
+                return response()->json(['status' => 'success',
+                                    'questions' => $questions->content]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'failed']);
+        }
+        
+        
     }
 }

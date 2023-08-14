@@ -14,7 +14,6 @@ const Modal = ({ choice, data, isOpen, onClose }) => {
       title: 'Session Details',
     },
   };
-
   const content = modalContent[choice];
 
   return (

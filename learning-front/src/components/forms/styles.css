@@ -24,12 +24,18 @@
 .logo {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
 }
 
+.signin-form-header{
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
 
-.input-with-label,
+
 .input-with-label {
     display: flex;
     flex-flow: column wrap;

@@ -12,37 +12,32 @@ const MyCard = ({ classInfo }) => {
     const [modalData, setmodalData] = useState('');
     const [modalChoice, setmodalChoice] = useState('');
     function openModal(data, type) {
+        console.log(data)
         if (type == "Sessions") {
-            const Sessions = data.student_materials.filter(item => item.title.startsWith('Session'));
+            const Sessions = Object.values(data.student_materials).filter(item => item.title.startsWith('Session'));
             setIsModalOpen(true);
             setmodalData(Sessions);
             setmodalChoice("Session");
         }
         if (type == "Assignments") {
-            const Assignments = data.student_materials.filter(item => item.title.startsWith('Assignment'));
+            const Assignments = Object.values(data.student_materials).filter(item => item.title.startsWith('Assignment'));
             setIsModalOpen(true);
             setmodalData(Assignments);
             setmodalChoice("Assignment");
 
         }
         if (type == "Quizzes") {
-            const Quizzes = data.student_materials.filter(item => item.title.startsWith('Quiz'));
+            const Quizzes = Object.values(data.student_materials).filter(item => item.title.startsWith('Quiz'));
             setIsModalOpen(true);
             setmodalData(Quizzes);
             setmodalChoice("Quiz");
-
         }
     }
-
-
-
 
     function closeModal() {
         setIsModalOpen(false);
         setmodalData('');
-
     }
-
 
     return (
         <>
@@ -61,10 +56,16 @@ const MyCard = ({ classInfo }) => {
                     <span className='card-teacher'>
                         {classInfo.teacher_name}
                     </span>
-                    <Calendly email={classInfo.teacher_email} />
-
+                    <div className='course-card-button-div'>
+                    {
+                        classInfo.isEnrolled?
+                            <Calendly email={classInfo.meeting_url} />
+                        : <button className='enrollbtn'>Enroll</button>
+                    }
+                    </div>
                 </div >
-
+                {
+                        classInfo.isEnrolled?
                 <div className='progress-container'>
                     <div className='progress-details'>
                         <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Sessions")}>
@@ -112,6 +113,7 @@ const MyCard = ({ classInfo }) => {
                     </div>
 
                 </div>
+                : ""}
 
             </div >
         </>

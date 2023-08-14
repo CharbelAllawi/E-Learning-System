@@ -1,45 +1,28 @@
 import React, { useState } from 'react';
 import './style.css';
+import { sendRequest } from '../../core/config/request';
 
-const Quiz = () => {
-  const questions = [
-    {
-      questionText: 'What is the capital of France?',
-      answerOptions: [
-        { answerText: 'New York', isCorrect: false },
-        { answerText: 'London', isCorrect: false },
-        { answerText: 'Paris', isCorrect: true },
-        { answerText: 'Dublin', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'Who is CEO of Tesla?',
-      answerOptions: [
-        { answerText: 'Jeff Bezos', isCorrect: false },
-        { answerText: 'Elon Musk', isCorrect: true },
-        { answerText: 'Bill Gates', isCorrect: false },
-        { answerText: 'Tony Stark', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'The iPhone was created by which company?',
-      answerOptions: [
-        { answerText: 'Apple', isCorrect: true },
-        { answerText: 'Intel', isCorrect: false },
-        { answerText: 'Amazon', isCorrect: false },
-        { answerText: 'Microsoft', isCorrect: false },
-      ],
-    },
-    {
-      questionText: 'How many Harry Potter books are there?',
-      answerOptions: [
-        { answerText: '1', isCorrect: false },
-        { answerText: '4', isCorrect: false },
-        { answerText: '6', isCorrect: false },
-        { answerText: '7', isCorrect: true },
-      ],
-    },
-  ];
+const Quiz = ({quizData, quizId}) => {
+
+  const handleGradeSubmission = async (grade, quiz_id) => {
+    const formData = new FormData();
+    formData.append('grade', grade);
+    formData.append('quiz_id', quiz_id);
+    try {
+      const response = await sendRequest({
+        method: "POST",
+        route: "/api/post_grade",
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const questions = quizData
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -54,8 +37,7 @@ const Quiz = () => {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
-      setTimeout(() => {
-      }, 5000);
+      handleGradeSubmission(score, quizId)
     }
   };
   return (
@@ -73,8 +55,8 @@ const Quiz = () => {
             <div className='question-text'>{questions[currentQuestion].questionText}</div>
           </div>
           <div className='answer-section'>
-            {questions[currentQuestion].answerOptions.map((answerOption) => (
-              <button className='answer-btn' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+            {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+              <button key={index} className='answer-btn' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
             ))}
           </div>
         </>
