@@ -4,13 +4,15 @@ import "./styles.css"
 
 import Modal from '../modal';
 import Calendly from '../calendly';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { sendRequest } from '../../core/config/request';
 
 const MyCard = ({ classInfo }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalData, setmodalData] = useState('');
     const [modalChoice, setmodalChoice] = useState('');
+    const [number_of_done_quizzes, set_number_of_done_quizzes] = useState(0);
+    const [number_of_done_assignments, set_number_of_done_assignments] = useState(0);
     function openModal(data, type) {
         console.log(data)
         if (type == "Sessions") {
@@ -55,6 +57,17 @@ const MyCard = ({ classInfo }) => {
         } catch (error) {
             console.log(error);
         }}
+    useEffect(()=> {
+    if (classInfo.isEnrolled){
+                set_number_of_done_quizzes(Object.values(classInfo.student_materials).filter(
+                material => (material.grade !== null && material.quiz_id !== null)
+            ).length)
+
+                set_number_of_done_assignments(Object.values(classInfo.student_materials).filter(
+                material => (material.assignment_id !== null)
+            ).length)
+            }
+    }, [])
     
     return (
         <>
@@ -101,12 +114,12 @@ const MyCard = ({ classInfo }) => {
                         </div>
                         <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Assignments")}>
                             <CircularProgressbar
-                                value={(5 / classInfo.number_of_assignments) * 100}
-                                text={`${Math.ceil((5 / classInfo.number_of_assignments) * 100)}%`}
+                                value={(number_of_done_assignments / classInfo.number_of_assignments) * 100}
+                                text={`${Math.ceil((number_of_done_assignments / classInfo.number_of_assignments) * 100)}%`}
                                 styles={buildStyles({
                                     textSize: '1.5rem',
                                     pathTransitionDuration: 0.5,
-                                    pathColor: `rgba(34, 150, 50, ${(5 / classInfo.number_of_assignments) * 100})`,
+                                    pathColor: `rgba(34, 150, 50, ${(number_of_done_assignments / classInfo.number_of_assignments) * 100})`,
                                     textColor: 'rgb(34, 150, 50)',
                                     backgroundColor: 'rgb(117, 117, 117)',
                                 })}
@@ -115,12 +128,12 @@ const MyCard = ({ classInfo }) => {
                         </div>
                         <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Quizzes")}>
                             <CircularProgressbar
-                                value={(2 / classInfo.number_of_quizzes) * 100}
-                                text={`${Math.ceil((2 / classInfo.number_of_quizzes) * 100)}%`}
+                                value={(number_of_done_quizzes / classInfo.number_of_quizzes) * 100}
+                                text={`${Math.ceil((number_of_done_quizzes / classInfo.number_of_quizzes) * 100)}%`}
                                 styles={buildStyles({
                                     textSize: '1.5rem',
                                     pathTransitionDuration: 0.5,
-                                    pathColor: `rgba(230, 50, 50, ${(2 / classInfo.number_of_quizzes) * 100})`,
+                                    pathColor: `rgba(230, 50, 50, ${(number_of_done_quizzes / classInfo.number_of_quizzes) * 100})`,
                                     textColor: 'rgb(230, 50, 50)',
                                     backgroundColor: 'rgb(117, 117, 117)',
                                 })}
