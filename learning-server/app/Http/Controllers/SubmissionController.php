@@ -37,4 +37,26 @@ class SubmissionController extends Controller
             return response()->json(['message' => 'Assignment ID updated successfully']);
         }
     }
+
+    public function postGrade(Request $request)
+    {
+        $user = Auth::user();
+        $user_id = $user->id;
+        $quiz_id = $request->quiz_id;
+        $grade = $request->grade;
+
+        $material = Material::where('quiz_id', $quiz_id)->where('student_id', $user_id)->first();
+
+        if (!$material) {
+            
+        }
+        if($material->grade){
+            return response()->json(['message' => 'test already taken']);
+        }
+        $material->grade = $grade;
+        $material->save();
+
+        return response()->json(['message' => 'grade updated successfully']);
+        }
+    
 }

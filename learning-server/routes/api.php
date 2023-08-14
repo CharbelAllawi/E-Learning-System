@@ -11,6 +11,7 @@ use App\Http\Controllers\ParentController;
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
+Route::post('post_grade', [SubmissionController::class, 'postGrade']);
 Route::get('/get_courses/{name?}', [CourseController::class, 'getCourses']);
 Route::get('/get_children', [CourseController::class, 'getChildren']);
 Route::post('/get_questions', [CourseController::class, 'getQuestions']);
