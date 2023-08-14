@@ -14,7 +14,8 @@ class AttendanceController extends Controller
     {
         if ($request->student_id) {
             $student_id = $request->input('student_id');
-        } elseif (Auth::user()) {
+
+        } elseif(Auth::user()) {
             $student_id = Auth::user()->id;
         }
         $enrolled_course_ids = Enrollment::where('student_id', $student_id)->pluck('course_id')->toArray();

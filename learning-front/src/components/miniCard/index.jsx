@@ -64,13 +64,15 @@ const MiniCard = ({ data, choice }) => {
   useEffect(() => {
     const getAttendance = async () => {
       try {
-        const formData = new FormData();
+
+        const formData = new FormData(); 
         formData.append('student_id', data.student_materials[0].student_id)
         const response = await sendRequest({
           method: 'POST',
           route: '/api/getattendance',
-          body: (localStorage.getItem('usertype') === 'Parent') ? formData : null,
-          includeHeaders: (localStorage.getItem('usertype') === 'Parent') ? false : true,
+
+          body: (localStorage.getItem('usertype') === 'Parent')? formData : null,
+          includeHeaders: (localStorage.getItem('usertype') === 'Parent')? false : true,
         });
         setAttendance(response.attendance);
       } catch (error) {
@@ -114,10 +116,7 @@ const MiniCard = ({ data, choice }) => {
           </ul>
         </div>
       ))}
-
-
-
-
+        
       <div className="card">
         {choice === 'Quiz' && (
           <ul>
