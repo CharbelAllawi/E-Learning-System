@@ -27,6 +27,7 @@ const LoginForm = (userType) => {
                 localStorage.setItem("token", response.user.token)
                 localStorage.setItem("usertype", userType.userType)
                 navigate('/home')
+                window.location.reload(false);
             }
         } catch (error) {
             console.log(error);

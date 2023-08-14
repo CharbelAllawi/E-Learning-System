@@ -88,24 +88,29 @@ const MiniCard = ({ data, choice }) => {
               </span>
               <div className='uploadcontainer'>
                 <div className='upload'>
-                  
-                  {localStorage.getItem('usertype') === 'Student'? 
-                  <>
-                  <p className='submittxt'>Submit your answer!</p>
-                  <label className='uploadbtn'>
-                    <input
-                      type='file'
-                      style={{ display: 'none' }}
-                      onChange={(event) => handleFileChange(event, item.id)}
-                    />
-                    <img src={uploadpng} alt="Upload Icon" />
-                  </label> </>: item.grade? <p className='submittext'>Grade: {item.grade} </p> : <p className='submittext'> Not done yet.</p>}
+                  {localStorage.getItem('usertype') === 'Student' ?
+                    <>
+                      <p className='submittxt'>Submit your answer!</p>
+                      <label className='uploadbtn'>
+                        <input
+                          type='file'
+                          style={{ display: 'none' }}
+                          onChange={(event) => handleFileChange(event, item.id)}
+                        />
+                        <img src={uploadpng} alt="Upload Icon" />
+                      </label>
+                    </> :
+                    item.grade ?
+                      <p className='submittext'>Grade: {item.grade} </p> :
+                      <p className='submittext'> Not done yet.</p>
+                  }
                 </div>
-              </li>
-            </ul>
-          </div>
-        ))}
-
+              </div>
+            </li>
+          </ul>
+        </div>
+      ))}
+        
       <div className="card">
         {choice === 'Quiz' && (
           <ul>
