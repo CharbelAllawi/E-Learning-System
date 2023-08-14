@@ -58,6 +58,9 @@ const MiniCard = ({ data, choice }) => {
               </span>
               <div className='uploadcontainer'>
                 <div className='upload'>
+                  
+                  {localStorage.getItem('usertype') === 'Student'? 
+                  <>
                   <p className='submittxt'>Submit your answer!</p>
                   <label className='uploadbtn'>
                     <input
@@ -66,7 +69,7 @@ const MiniCard = ({ data, choice }) => {
                       onChange={(event) => handleFileChange(event, item.id)}
                     />
                     <img src={uploadpng} alt="Upload Icon" />
-                  </label>
+                  </label> </>: item.grade? <p className='submittext'>Grade: {item.grade} </p> : <p className='submittext'> Not done yet.</p>}
                 </div>
               </div>
             </li>
@@ -83,8 +86,11 @@ const MiniCard = ({ data, choice }) => {
                 <span className='alldesc'>
                   <span className='alldescription'>{quiz.description}</span>
                 </span>
+                
                 {!showQuiz[quiz.quiz_id] ? (
-                  <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button>
+                  localStorage.getItem('usertype') === "Student" ?
+                  <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button>:
+                  quiz.grade? <p className='submittext'>Grade: {quiz.grade} </p> : <p className='submittext'> Not taken yet.</p>
                 ) : (
                   <Quiz key={quiz.quiz_id} quizData={questions} quizId={quiz.quiz_id}/>
                 )}
