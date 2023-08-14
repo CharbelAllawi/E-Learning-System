@@ -19,6 +19,10 @@
     padding-bottom: 50px;
   }
 
+  .glink {
+    color: blue;
+  }
+
   .alltitle {
     font-size: 20px;
     font-weight: bold;
