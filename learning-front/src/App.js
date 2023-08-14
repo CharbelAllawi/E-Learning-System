@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Modal from './components/modal';
 import LandingPage from './components/landing';
 import NavBar from './components/navbar';
-import HomePage from './pages/studentHome';
+import HomePage from './pages/studentHome/index';
 import { EnrollmentStateProvider } from './global/context';
 import StudentCard from './components/studentCard';
 import ParentHome from './pages/parentHome';
@@ -18,9 +18,9 @@ function App() {
       <EnrollmentStateProvider value={true}>
         <NavBar />
           <Routes>
+            <Route path='/' element={<LandingPage />}></Route>
             <Route path='/home' element={ 
-              (localStorage.getItem('usertype') == 'Student')? <HomePage />: <ParentHome/> } />
-            <Route path='landing' element={<LandingPage />}></Route>
+              (localStorage.getItem('usertype') === 'Student') ? <HomePage />: <ParentHome/> } />
           </Routes>
         </EnrollmentStateProvider>
       </BrowserRouter>
