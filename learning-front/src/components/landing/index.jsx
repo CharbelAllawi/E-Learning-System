@@ -6,7 +6,12 @@ import './styles.css'
 import LoginForm from "../forms";
 const LandingPage = () => {
     const [showSignIn, setShowSignIn] = useState(false)
+    const [usertype, setUSerType] = useState('')
 
+    const handleSignInUserType = (usertype) => {
+        setUSerType(usertype)
+        setShowSignIn(true)
+    }
     return ( 
         <>
             {/* <NavBar/> */}
@@ -17,14 +22,19 @@ const LandingPage = () => {
                         Professional Certificates, and degrees from world-class universities and 
                         companies.</span>
                         {
-                        (!showSignIn? <button className="landing-signin-btn" onClick={() => setShowSignIn(true)}>Sign in</button> : '')
+                        (!showSignIn? 
+                            <>
+                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Student')}>Sign in As Student</button> 
+                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Parent')}>Sign in As Parent</button> 
+                            </>
+                            : '')
                         }
                         
                 </div>
                 <div className="landing-right">
 
                     {
-                        (showSignIn? <LoginForm/> : <img src={landingImg}/>)
+                        (showSignIn? <LoginForm userType={usertype}/> : <img src={landingImg}/>)
                     }
                     
                 </div>

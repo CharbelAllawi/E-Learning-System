@@ -31,19 +31,13 @@ const MyCard = ({ classInfo }) => {
             setIsModalOpen(true);
             setmodalData(Quizzes);
             setmodalChoice("Quiz");
-
         }
     }
-
-
-
 
     function closeModal() {
         setIsModalOpen(false);
         setmodalData('');
-
     }
-
 
     return (
         <>
@@ -62,10 +56,16 @@ const MyCard = ({ classInfo }) => {
                     <span className='card-teacher'>
                         {classInfo.teacher_name}
                     </span>
-                    <Calendly email={classInfo.teacher_email} />
-
+                    <div className='course-card-button-div'>
+                    {
+                        classInfo.isEnrolled?
+                            <Calendly email={classInfo.meeting_url} />
+                        : <button className='enrollbtn'>Enroll</button>
+                    }
+                    </div>
                 </div >
-
+                {
+                        classInfo.isEnrolled?
                 <div className='progress-container'>
                     <div className='progress-details'>
                         <div className='CircularProgressbar-container' onClick={() => openModal(classInfo, "Sessions")}>
@@ -113,6 +113,7 @@ const MyCard = ({ classInfo }) => {
                     </div>
 
                 </div>
+                : ""}
 
             </div >
         </>

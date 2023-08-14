@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import "./styles.css";
 import { useState } from 'react';
 import { sendRequest } from '../../core/config/request';
-const LoginForm = () => {
+const LoginForm = (userType) => {
     
     const navigate = useNavigate()
     const [data, setData] = useState({
@@ -25,6 +25,7 @@ const LoginForm = () => {
             });
             if(response.message === "logged in successfully"){
                 localStorage.setItem("token", response.user.token)
+                localStorage.setItem("usertype", userType.userType)
                 navigate('/home')
             }
         } catch (error) {
@@ -38,6 +39,7 @@ const LoginForm = () => {
             <div className='form'>
                 <div className="logo">
                     <img src={logo} className="App-logo" alt="logo" />
+                    <span className='signin-form-header'>Sign in As a {userType.userType}</span>
                 </div>
                 <div className="input-with-label">
                     <label className='signin-label'>Enter your email:</label>
