@@ -86,7 +86,7 @@ const MiniCard = ({ data, choice }) => {
                 {!showQuiz[quiz.quiz_id] ? (
                   <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button>
                 ) : (
-                  <Quiz key={quiz.quiz_id} quizData={questions}/>
+                  <Quiz key={quiz.quiz_id} quizData={questions} quizId={quiz.quiz_id}/>
                 )}
               </li>
             ))}

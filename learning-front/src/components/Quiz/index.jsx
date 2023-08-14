@@ -1,7 +1,27 @@
 import React, { useState } from 'react';
 import './style.css';
+import { sendRequest } from '../../core/config/request';
 
-const Quiz = ({quizData}) => {
+const Quiz = ({quizData, quizId}) => {
+
+  const handleGradeSubmission = async (grade, quiz_id) => {
+    const formData = new FormData();
+    formData.append('grade', grade);
+    formData.append('quiz_id', quiz_id);
+    try {
+      const response = await sendRequest({
+        method: "POST",
+        route: "/api/post_grade",
+        body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const questions = quizData
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -17,8 +37,7 @@ const Quiz = ({quizData}) => {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
-      setTimeout(() => {
-      }, 5000);
+      handleGradeSubmission(score, quizId)
     }
   };
   return (
