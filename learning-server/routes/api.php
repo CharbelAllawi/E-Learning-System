@@ -9,6 +9,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ParentController;
 
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
+Route::post('courseEnroll', [CourseController::class, 'courseEnroll']);
 
 Route::post('postassignment', [SubmissionController::class, 'postassignment']);
 Route::post('post_grade', [SubmissionController::class, 'postGrade']);
