@@ -64,9 +64,13 @@ const MiniCard = ({ data, choice }) => {
   useEffect(() => {
     const getAttendance = async () => {
       try {
+        const formData = new FormData(); 
+        formData.append('student_id', data.student_materials[0].student_id)
         const response = await sendRequest({
-          method: 'GET',
+          method: 'POST',
           route: '/api/getattendance',
+          body: (localStorage.getItem('usertype') === 'Parent')? formData : null,
+          includeHeaders: (localStorage.getItem('usertype') === 'Parent')? false : true,
         });
         setAttendance(response.attendance);
       } catch (error) {
@@ -88,24 +92,29 @@ const MiniCard = ({ data, choice }) => {
               </span>
               <div className='uploadcontainer'>
                 <div className='upload'>
-                  
-                  {localStorage.getItem('usertype') === 'Student'? 
-                  <>
-                  <p className='submittxt'>Submit your answer!</p>
-                  <label className='uploadbtn'>
-                    <input
-                      type='file'
-                      style={{ display: 'none' }}
-                      onChange={(event) => handleFileChange(event, item.id)}
-                    />
-                    <img src={uploadpng} alt="Upload Icon" />
-                  </label> </>: item.grade? <p className='submittext'>Grade: {item.grade} </p> : <p className='submittext'> Not done yet.</p>}
+                  {localStorage.getItem('usertype') === 'Student' ?
+                    <>
+                      <p className='submittxt'>Submit your answer!</p>
+                      <label className='uploadbtn'>
+                        <input
+                          type='file'
+                          style={{ display: 'none' }}
+                          onChange={(event) => handleFileChange(event, item.id)}
+                        />
+                        <img src={uploadpng} alt="Upload Icon" />
+                      </label>
+                    </> :
+                    item.grade ?
+                      <p className='submittext'>Grade: {item.grade} </p> :
+                      <p className='submittext'> Not done yet.</p>
+                  }
                 </div>
-              </li>
-            </ul>
-          </div>
-        ))}
-
+              </div>
+            </li>
+          </ul>
+        </div>
+      ))}
+        
       <div className="card">
         {choice === 'Quiz' && (
           <ul>
@@ -115,11 +124,11 @@ const MiniCard = ({ data, choice }) => {
                 <span className="alldesc">
                   <span className="alldescription">{quiz.description}</span>
                 </span>
-                
+
                 {!showQuiz[quiz.quiz_id] ? (
                   localStorage.getItem('usertype') === "Student" ?
-                  <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button>:
-                  quiz.grade? <p className='submittext'>Grade: {quiz.grade} </p> : <p className='submittext'> Not taken yet.</p>
+                    <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button> :
+                    quiz.grade ? <p className='submittext'>Grade: {quiz.grade} </p> : <p className='submittext'> Not taken yet.</p>
                 ) : (
                   <Quiz key={quiz.quiz_id} quizData={questions} quizId={quiz.quiz_id} />
                 )}
