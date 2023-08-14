@@ -1,6 +1,6 @@
 import './styles.css'
 
-const StudentCard = ({childName}) => {
+const StudentCard = ({childName, onCall}) => {
     const border_colors = [
         'rgb(255, 153, 0)',
         'rgb(0, 123, 255)',
@@ -27,7 +27,7 @@ const StudentCard = ({childName}) => {
     const random_border_color = border_colors[random_number];
     
     return ( 
-        <div className='student-card' style={ {backgroundColor: random_color, borderLeft: `3px solid ${random_border_color}`}}>
+        <div onClick={onCall} className='student-card' style={ {backgroundColor: random_color, borderLeft: `3px solid ${random_border_color}`}}>
             <span className='student-card-name-text'>{childName}</span>
         </div>
     );

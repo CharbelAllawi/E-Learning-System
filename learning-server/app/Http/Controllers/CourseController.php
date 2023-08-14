@@ -92,4 +92,21 @@ class CourseController extends Controller
 
         return response()->json(['message' => 'Enrollment successful'], 201);
     }
+
+    function enrollInCourse(Request $request) {
+        $user = Auth::user();
+        $course_id = $request->course_id;
+        if(Enrollment::where('student_id', $user->id)->where('course_id', $course_id)->first()){
+            return response()->json([
+                'message' => 'already enrolled'
+            ]);
+        }
+        $enrollment = new Enrollment();
+        $enrollment->student_id = $user->id;
+        $enrollment->course_id = $course_id;
+        $enrollment->save();
+        return response()->json([
+            'message' => 'enrolled successfully'
+        ]);
+    }
 }
