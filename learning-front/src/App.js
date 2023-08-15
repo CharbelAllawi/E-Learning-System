@@ -10,6 +10,7 @@ import HomePage from './pages/studentHome/index.jsx';
 import { EnrollmentStateProvider } from './global/context';
 import StudentCard from './components/studentCard';
 import TeacherHome from './pages/teacherHome';
+import AdminPage from './pages/adminHome';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/home' element={ 
               (localStorage.getItem('usertype') === 'Student') ? (<HomePage />): (<ParentHome/>) } />
             <Route path='/teacher' element={<TeacherHome/>}/>
+            <Route path='/admin' element={<AdminPage/>}/>
           </Routes>
         </EnrollmentStateProvider>
       </BrowserRouter>
