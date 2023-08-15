@@ -31,6 +31,7 @@ class AdminController extends Controller
 
         return json_encode(["result" => "success"]);
     }
+    
     public function deleteUserByEmail(Request $request)
     {
         $email = $request->input('email');

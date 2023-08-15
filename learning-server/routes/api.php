@@ -29,8 +29,10 @@ Route::post("addquiz", [TeacherController::class, "addQuiz"]);
 Route::post("resultassignment", [TeacherController::class, "resultAssignment"]);
 Route::post("addassignment", [TeacherController::class, "addAssignment"]);
 Route::post("addOrUpdateCourse/{id?}", [AdminController::class, "addOrUpdateCourse"]);
-Route::post("deleteUserByEmail", [AdminController::class, "deleteUserByEmail"]);
 
+Route::group(["middleware" => "auth.admin"], function () {
+    Route::post("deleteUserByEmail", [AdminController::class, "deleteUserByEmail"]);
+});
 
 Route::controller(AuthController::class)->group(function () {
 
