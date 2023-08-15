@@ -1,0 +1,28 @@
+.admin-home-body{
+    display: flex;
+}
+
+
+.admin-course-cards-container{
+    display: flex;
+    flex-flow: column nowrap;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 35vw;
+    gap: 1rem;
+    padding: 20px 10px 20px;
+    border-right: 1px solid rgba(0, 123, 255, 0.5);
+}
+
+.admin-right-panel{
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    min-height: 100px;
+    max-width: 65vw;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
