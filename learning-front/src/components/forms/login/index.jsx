@@ -7,14 +7,14 @@ const LoginForm = (userType) => {
     
     const navigate = useNavigate()
     const [data, setData] = useState({
-      email: "",
-      password: ""
+        email: "",
+        password: ""
     })
 
     const handleDataChange = (e)=>{
-      setData({...data, [e.target.name]: e.target.value})
+        setData({...data, [e.target.name]: e.target.value})
     }
-  
+
     const loginHandler = async () => {
         try {
             const response = await sendRequest({
@@ -26,14 +26,20 @@ const LoginForm = (userType) => {
             if(response.message === "logged in successfully"){
                 localStorage.setItem("token", response.user.token)
                 localStorage.setItem("usertype", userType.userType)
-                navigate('/home')
+                if (userType.userType === "Teacher") {
+                    navigate('/teacher')
+                    window.location.reload(false);
+                } else {
+                    navigate('/home')
                 window.location.reload(false);
+                }
+                
             }
         } catch (error) {
             console.log(error);
         }}
     
-  
+
     
     return (
         <div className='login-form-container'>
