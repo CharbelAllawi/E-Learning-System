@@ -3,7 +3,7 @@ import Calendly from "../calendly";
 import NavBar from "../navbar"
 import landingImg from './landing.svg'
 import './styles.css'
-import LoginForm from "../forms";
+import LoginForm from "../forms/login";
 const LandingPage = () => {
     localStorage.clear()
     const [showSignIn, setShowSignIn] = useState(false)
@@ -25,6 +25,7 @@ const LandingPage = () => {
                         {
                         (!showSignIn? 
                             <>
+                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Teacher')}>Sign in As Teacher</button> 
                                 <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Student')}>Sign in As Student</button> 
                                 <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Parent')}>Sign in As Parent</button> 
                             </>

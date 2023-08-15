@@ -1,0 +1,25 @@
+.base-input-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.base-input-field>label{
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.base-input-field>input{
+    height: 2.5rem;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    padding: 0 15px 0;
+    border-radius: 2px;
+    border: 2px solid rgba(48, 48, 48, 0.3);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.base-input-field>input:focus {
+    border: 2px solid rgba(0, 123, 255, 0.7);
+}

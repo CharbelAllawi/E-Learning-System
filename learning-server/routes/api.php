@@ -6,7 +6,10 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MailerController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\TeacherController;
+use Symfony\Component\Mailer\MailerInterface;
 
 Route::post('enroll', [EnrollmentController::class, 'enroll']);
 Route::post('courseEnroll', [CourseController::class, 'courseEnroll']);
@@ -19,6 +22,9 @@ Route::post('/get_questions', [CourseController::class, 'getQuestions']);
 Route::post('/enroll', [CourseController::class, 'enrollInCourse']);
 Route::get('getstudents', [ParentController::class, 'getStudents']);
 Route::post('getattendance', [AttendanceController::class, 'getattendance']);
+Route::get('get_teacher_courses', [TeacherController::class, 'getTeacherCourses']);
+Route::post("send-email", [MailerController::class, "composeEmail"]);
+
 Route::controller(AuthController::class)->group(function () {
 
     Route::post('login', 'login');

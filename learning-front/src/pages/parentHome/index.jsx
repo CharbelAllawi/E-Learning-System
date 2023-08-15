@@ -1,26 +1,23 @@
 import {useEffect, useState} from 'react'
-import StudentCard from '../../components/studentCard';
 import { sendRequest } from '../../core/config/request';
 import './styles.css'
 import MyCard from '../../components/courseCard';
+import SideBarCard from '../../components/studentCard';
 const ParentHome = () => {
 
     const [children, setChildren] = useState([])
     const [childCourses, setChildCourses] = useState([])
 
     const getChildCourses = async (child) => {
-        console.log(0)
         try {
             const response = await sendRequest({
                 method: "GET",
                 route: `/api/get_courses/${child}`,
             });
-            console.log(1)
             setChildCourses(response.courses)
         } catch (error) {
             console.log(error);
         }
-        console.log(2)
     };
     
 
@@ -43,7 +40,7 @@ const ParentHome = () => {
         <div className='parents-home-body'>
             <div className='student-cards-container'>
                 {children.map(child => (
-                    <StudentCard key={child} childName={child} onCall={() => getChildCourses(child)}/>)) 
+                    <SideBarCard key={child} name={child} onCall={() => getChildCourses(child)}/>)) 
                 }
             </div>
             <div className='Child-courses-contained'>
