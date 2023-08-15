@@ -1,7 +1,11 @@
+import AttendanceCard from "../../attendanceCard";
+import "./styles.css"
+
 const RecordAttendanceForm = () => {
     return ( 
-        <div>
-            attendance
+        <div className="attendance-form-container">
+            <AttendanceCard/>
+            <AttendanceCard/>
         </div>
      );
 }
