@@ -22,10 +22,11 @@ class TeacherController extends Controller
         if ($user_type_id == 2) {
             $teacher_id = $user->id;
             $courses = Course::where('teacher_id', $teacher_id)->get();
-            $materials = [];
             foreach ($courses as $course) {
                 $course->student_count = Enrollment::where('course_id', $course->id)->count();
-
+                $enrolledStudentIds = Enrollment::where('course_id',  $course->id)->pluck('student_id');
+                $enrolledStudents = User::whereIn('id', $enrolledStudentIds)->get(['id', 'name']);
+                $course->enrolledStudents = $enrolledStudents; // Fix this line
                 $materials = $course->materials;
                 foreach ($materials as $material) {
                     $assignment_id = $material->assignment_id;
@@ -42,6 +43,10 @@ class TeacherController extends Controller
             ], 401);
         }
     }
+
+
+
+
     public function addQuiz(Request $request)
     {
         $mainCourseID = $request->course_id;
