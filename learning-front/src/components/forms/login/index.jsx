@@ -24,14 +24,18 @@ const LoginForm = (userType) => {
                 body: data,
             });
             if(response.message === "logged in successfully"){
-                localStorage.setItem("token", response.user.token)
-                localStorage.setItem("usertype", userType.userType)
-                if (userType.userType === "Teacher") {
+                const user_type = response.user.user_type_id
+                localStorage.setItem('token', response.user.token)
+                localStorage.setItem('usertype', user_type)
+                if (user_type === 2) {
                     navigate('/teacher')
-                    window.location.reload(false);
-                } else {
+                    window.location.reload(false)
+                } else if (user_type === 3 || user_type === 4){
                     navigate('/home')
-                window.location.reload(false);
+                    window.location.reload(false)
+                } else if (user_type === 1){
+                    navigate('/admin')
+                    window.location.reload(false)
                 }
                 
             }
@@ -46,7 +50,7 @@ const LoginForm = (userType) => {
             <div className='form'>
                 <div className="logo">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <span className='signin-form-header'>Sign in As a {userType.userType}</span>
+                    <span className='signin-form-header'>Sign in</span>
                 </div>
                 <div className="input-with-label">
                     <label className='signin-label'>Enter your email:</label>

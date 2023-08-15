@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />}></Route>
             <Route path='/home' element={ 
-              (localStorage.getItem('usertype') === 'Student') ? (<HomePage />): (<ParentHome/>) } />
+              (localStorage.getItem('usertype') == 4) ? (<HomePage />): (<ParentHome/>) } />
             <Route path='/teacher' element={<TeacherHome/>}/>
             <Route path='/admin' element={<AdminPage/>}/>
           </Routes>

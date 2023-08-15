@@ -71,8 +71,8 @@ const MiniCard = ({ data, choice }) => {
           method: 'POST',
           route: '/api/getattendance',
 
-          body: (localStorage.getItem('usertype') === 'Parent')? formData : null,
-          includeHeaders: (localStorage.getItem('usertype') === 'Parent')? false : true,
+          body: (localStorage.getItem('usertype') == 3)? formData : null,
+          includeHeaders: (localStorage.getItem('usertype') == 3)? false : true,
         });
         setAttendance(response.attendance);
       } catch (error) {
@@ -94,7 +94,7 @@ const MiniCard = ({ data, choice }) => {
               </span>
               <div className='uploadcontainer'>
                 <div className='upload'>
-                  {localStorage.getItem('usertype') === 'Student' ?
+                  {localStorage.getItem('usertype') == 4 ?
                     <>
                       <p className='submittxt'>Submit your answer!</p>
                       <label className='uploadbtn'>
@@ -128,7 +128,7 @@ const MiniCard = ({ data, choice }) => {
                 </span>
 
                 {!showQuiz[quiz.quiz_id] ? (
-                  localStorage.getItem('usertype') === "Student" ?
+                  localStorage.getItem('usertype') == 4 ?
                     <button className="btn" id={quiz.quiz_id} onClick={() => handleQuizButtonClick(quiz.quiz_id)}>Take Quiz</button> :
                     quiz.grade ? <p className='submittext'>Grade: {quiz.grade} </p> : <p className='submittext'> Not taken yet.</p>
                 ) : (
