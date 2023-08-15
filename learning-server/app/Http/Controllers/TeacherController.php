@@ -15,39 +15,30 @@ use Illuminate\Support\Facades\Date;
 
 class TeacherController extends Controller
 {
-    public function getTeacherCourses(Request $request)
+    public function getTeacherCourses()
     {
-        if ($request->teacher_id) {
-            $teacher_id = $request->input('teacher_id');
-
-        } elseif(Auth::user()) {
+        if (Auth::user()->user_type_id == 1) {
+            $courses = Course::all();
+        } elseif(Auth::user()->user_type_id == 2) {
             $teacher_id = Auth::user()->id;
-        }
-        $user = Auth::user();
-        $user_type_id = $user->user_type_id;
-        if ($user_type_id == 2) {
-            $teacher_id = $user->id;
             $courses = Course::where('teacher_id', $teacher_id)->get();
-            foreach ($courses as $course) {
-                $course->student_count = Enrollment::where('course_id', $course->id)->count();
-                $enrolledStudentIds = Enrollment::where('course_id',  $course->id)->pluck('student_id');
-                $enrolledStudents = User::whereIn('id', $enrolledStudentIds)->get(['id', 'name']);
-                $course->enrolledStudents = $enrolledStudents;
-                $materials = $course->materials;
-                foreach ($materials as $material) {
-                    $assignment_id = $material->assignment_id;
-                    $assignment = Assignment::find($assignment_id);
-                    $material->assignment = $assignment;
-                }
-            }
-            return response()->json([
-                'courses' => $courses,
-            ]);
-        } else {
-            return response()->json([
-                'error' => 'Not authorized',
-            ], 401);
         }
+        foreach ($courses as $course) {
+            $course->student_count = Enrollment::where('course_id', $course->id)->count();
+            $enrolledStudentIds = Enrollment::where('course_id',  $course->id)->pluck('student_id');
+            $enrolledStudents = User::whereIn('id', $enrolledStudentIds)->get(['id', 'name']);
+            $course->enrolledStudents = $enrolledStudents;
+            $materials = $course->materials;
+            foreach ($materials as $material) {
+                $assignment_id = $material->assignment_id;
+                $assignment = Assignment::find($assignment_id);
+                $material->assignment = $assignment;
+            }
+        }
+        return response()->json([
+            'courses' => $courses,
+        ]);
+
     }
 
 
