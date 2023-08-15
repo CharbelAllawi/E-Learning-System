@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('quiz_id')->nullable();
             $table->unsignedBigInteger('assignment_id')->nullable();
+            $table->text('feedback')->nullable();
+            $table->text('on_date')->nullable();
             $table->timestamps();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
