@@ -26,7 +26,7 @@ class TeacherController extends Controller
                 $course->student_count = Enrollment::where('course_id', $course->id)->count();
                 $enrolledStudentIds = Enrollment::where('course_id',  $course->id)->pluck('student_id');
                 $enrolledStudents = User::whereIn('id', $enrolledStudentIds)->get(['id', 'name']);
-                $course->enrolledStudents = $enrolledStudents; // Fix this line
+                $course->enrolledStudents = $enrolledStudents;
                 $materials = $course->materials;
                 foreach ($materials as $material) {
                     $assignment_id = $material->assignment_id;
@@ -45,6 +45,27 @@ class TeacherController extends Controller
     }
 
 
+    public function addAssignment(Request $request)
+    {
+        $course_id = $request->course_id;
+        $enrollments = Enrollment::all();
+        foreach ($enrollments as $enrollment) {
+            if ($enrollment['course_id'] == $course_id) {
+                $student_id = $enrollment->student_id;
+                $material = new Material(
+                    [
+                        'title' => 'Assignment',
+                        'description' => $request->description,
+                        'course_id' => $course_id,
+                        'student_id' => $student_id,
+                        'on_date' => Carbon::parse($request['on_date'])
+                    ]
+                );
+                $material->save();
+            }
+        }
+        return response()->json(['message' => 'success'], 201);
+    }
 
 
     public function addQuiz(Request $request)
@@ -76,7 +97,7 @@ class TeacherController extends Controller
         return response()->json(['message' => 'success'], 201);
     }
 
-    public function assignment(Request $request)
+    public function resultAssignment(Request $request)
     {
         $student_id = $request->student_id;
         $feedback = $request->feedback;
