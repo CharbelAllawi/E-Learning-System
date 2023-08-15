@@ -1,0 +1,11 @@
+.add-quiz-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.quiz-form-btns{
+    display: flex;
+    justify-content: space-around;
+}

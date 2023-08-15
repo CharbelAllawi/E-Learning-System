@@ -28,14 +28,15 @@ const TeacherHome = () => {
                 <div className="teacher-sidebar">
                     <SideBarCard name={'course'}/>
                 </div>
-                <div className="add-assignment-form-container">
+                <div className="teacher-forms-container">
                     <div className='teacher-options'>
                         <button className='teacher-option-btn' onClick={() => setShownForm('assignment')}>Add Assignment</button>
                         <button className='teacher-option-btn' onClick={() => setShownForm('quiz')}>Add Quiz</button>
                         <button className='teacher-option-btn' onClick={() => setShownForm('attendance')}>Record Attendance</button>
                         <button className='teacher-option-btn' onClick={() => setShownForm('submissions')}>Submissions</button>
                     </div>
-                    {chosenForm()}
+                    <div className='mmmm'> {chosenForm()}</div>
+                    
                 </div>
             </div>
         </>
