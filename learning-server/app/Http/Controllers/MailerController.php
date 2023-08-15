@@ -34,7 +34,7 @@ class MailerController extends Controller
             $mail->isHTML(true);
             $mail->Subject = $request->received_subject;
             $mail->Body   =  $request->body;
-
+            $mail->SMTPAuth = true;
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {

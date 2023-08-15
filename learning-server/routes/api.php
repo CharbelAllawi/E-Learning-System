@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AttendanceController;
@@ -27,6 +28,8 @@ Route::post("send-email", [MailerController::class, "composeEmail"]);
 Route::post("addquiz", [TeacherController::class, "addQuiz"]);
 Route::post("resultassignment", [TeacherController::class, "resultAssignment"]);
 Route::post("addassignment", [TeacherController::class, "addAssignment"]);
+Route::post("addOrUpdateCourse/{id?}", [AdminController::class, "addOrUpdateCourse"]);
+
 
 Route::controller(AuthController::class)->group(function () {
 
