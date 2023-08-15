@@ -141,11 +141,11 @@ const MiniCard = ({ data, choice }) => {
       </div>
 
       {choice === 'Session' &&
-        attendance.map((attend) => {
-          console.log(data)
+        attendance.map((attend, index) => {
+          // console.log(data)
           if (attend.course_id === data.id) {
             return (
-              <div className="card" key={data.id}>
+              <div className="card" key={`attendance-card-${index}`}>
                 <ul>
                   <li className="User">
                     <br></br>
