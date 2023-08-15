@@ -49,38 +49,31 @@ class TeacherController extends Controller
 
     public function addQuiz(Request $request)
     {
-        $mainCourseID = $request->course_id;
+        $course_id = $request->course_id;
         $quiz = new Quiz([
             'content' => $request->content,
             'on_date' => Carbon::parse($request['on_date'])
         ]);
-
         $quiz->save();
         $quiz_id = $quiz->id;
-        $courses = Course::all();
-        foreach ($courses as $course) {
-            $course_id = $course->id;
-            if ($course_id == $mainCourseID) {
-                $enrollments = Enrollment::all();
-                foreach ($enrollments as $enrollment) {
-                    if ($enrollment['course_id'] == $course_id) {
-                        $student_id = $enrollment->student_id;
-                        $material = new Material(
-                            [
-                                'title' => 'Quiz',
-                                'description' => $request->description,
-                                'course_id' => $course_id,
-                                'student_id' => $student_id,
-                                'quiz_id' => $quiz_id
+        $enrollments = Enrollment::all();
+        foreach ($enrollments as $enrollment) {
+            if ($enrollment['course_id'] == $course_id) {
+                $student_id = $enrollment->student_id;
+                $material = new Material(
+                    [
+                        'title' => 'Quiz',
+                        'description' => $request->description,
+                        'course_id' => $course_id,
+                        'student_id' => $student_id,
+                        'quiz_id' => $quiz_id
 
-                            ]
-                        );
-                        $material->save();
-                    }
-                }
+                    ]
+                );
+                $material->save();
             }
-            return response()->json(['message' => 'success'], 201);
         }
+        return response()->json(['message' => 'success'], 201);
     }
 
     public function assignment(Request $request)
