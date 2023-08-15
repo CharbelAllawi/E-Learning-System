@@ -1,20 +1,38 @@
 import AddAssignmentForm from '../../components/forms/addAssignment';
 import SideBarCard from '../../components/studentCard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddQuizForm from '../../components/forms/addQuiz';
 import RecordAttendanceForm from '../../components/forms/recordAttendance';
 import SubmissionsForm from '../../components/forms/submissionsForm';
+import { sendRequest } from "../../core/config/request";
 import './styles.css'
 
 const TeacherHome = () => {
 
     const [shownForm, setShownForm] = useState('assignment')
+    const [teacherCourses, setTeacherCourses] = useState([])
+    const [courseData, setCourseData] = useState([])
+
+    useEffect(() => {
+        const getTeacherCoursesHandler = async () => {
+            try {
+                const response = await sendRequest({
+                    method: "GET",
+                    route: "/api/get_teacher_courses",
+                });
+                setTeacherCourses(response.courses)
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getTeacherCoursesHandler()
+    }, [])
 
     const chosenForm = () => {
         if (shownForm === "assignment") {
-                return <AddAssignmentForm />
+                return <AddAssignmentForm classInfo={courseData}/>
         } else if (shownForm === "quiz") {
-                return <AddQuizForm/>
+                return <AddQuizForm classInfo={courseData}/>
         } else if (shownForm === "attendance") {
                 return <RecordAttendanceForm/>
         } else if (shownForm === "submissions") {
@@ -26,7 +44,9 @@ const TeacherHome = () => {
         <>
             <div className='teacher-home-body'>
                 <div className="teacher-sidebar">
-                    <SideBarCard name={'course'}/>
+                {teacherCourses.map(classInfo => (
+                    <SideBarCard key={classInfo.id} name={classInfo.title} onCall={() => setCourseData(classInfo)}/>))
+                }
                 </div>
                 <div className="teacher-forms-container">
                     <div className='teacher-options'>
