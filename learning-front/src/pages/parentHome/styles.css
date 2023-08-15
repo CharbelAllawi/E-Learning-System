@@ -23,6 +23,8 @@
     min-height: 100px;
     max-width: 65vw;
     align-items: center;
+    gap: 2rem;
+    padding: 2rem;
 }
 
 .empty-child-course-container{

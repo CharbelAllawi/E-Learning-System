@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Date;
 
 class TeacherController extends Controller
 {
-    public function getTeacherCourses()
+    public function getTeacherCourses(Request $request)
     {
+        if ($request->teacher_id) {
+            $teacher_id = $request->input('teacher_id');
+
+        } elseif(Auth::user()) {
+            $teacher_id = Auth::user()->id;
+        }
         $user = Auth::user();
         $user_type_id = $user->user_type_id;
         if ($user_type_id == 2) {

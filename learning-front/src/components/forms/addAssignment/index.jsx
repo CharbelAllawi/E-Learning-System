@@ -28,6 +28,18 @@ const AddAssignmentForm = ({classInfo}) => {
                     due_date:"",
                     course_id: classInfo.id
                 })
+                try {
+                    const email_data = new FormData();
+                    email_data.append('course_id', classInfo.id)
+                    email_data.append('description', data.description)
+                    await sendRequest({
+                        method: "POST",
+                        route: "/api/send-email",
+                        body: email_data,
+                    });
+                } catch (error) {
+                    console.log(error);
+            }
             }
         } catch (error) {
             console.log(error);

@@ -1,5 +1,4 @@
 .cards-container {
-    /* border: 2px solid black; */
     display: flex;
     flex-flow: row wrap;
     padding: 20px;
@@ -17,6 +16,9 @@
     flex-flow: column wrap;
     justify-content: space-between;
     align-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 3px solid rgb(0, 123, 255);
+    border-radius: 5px;
 }
 
 .CircularProgressbar-container {
@@ -48,7 +50,6 @@
     height: 250px;
     justify-content: space-around;
     color: rgb(255, 255, 255);
-    background-image: url('https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d15cw65ipctsrr.cloudfront.net/8a/f7f459f9674408947edb8e594a5da3/1200x600_PgM.png?auto=format%2Ccompress%2C%20enhance&dpr=1&w=265&h=216&fit=crop&q=50');
     background-size: contain;
     background-size: cover;
     transition: transform 0.3s ease;
@@ -132,6 +133,9 @@
     padding-top: 5px;
 }
 
+.CircularProgressbar-container>span{
+    color: rgb(255, 255, 255);
+}
 .enroll-btn-container {
     display: flex;
     align-items: center;
