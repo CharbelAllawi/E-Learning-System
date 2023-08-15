@@ -1,38 +1,57 @@
 import TextInput from '../../inputField/Index';
 import './styles.css'
 import { useState } from 'react';
+import { sendRequest } from '../../../core/config/request';
 
-const AddAssignmentForm = ({course_id}) => {
-    const [data, setData] = useState({
-        assignmentTitle:"Assignment",
-        assignmentDescription:"",
-        assignmentDueDate:"",
-        course_id: 1
-    });
+const AddAssignmentForm = ({classInfo}) => {
 
     const handleDataChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value, course_id: classInfo.id });
     };
 
+    const [data, setData] = useState({
+            description:"",
+            due_date:"",
+            course_id: ""
+        });
+
+    const postAssignmentHandler = async () => {
+        try {
+            const response = await sendRequest({
+                method: "POST",
+                route: "/api/addassignment",
+                body: data,
+            });
+            if(response.message === "success"){
+                setData({
+                    description:"",
+                    due_date:"",
+                    course_id: classInfo.id
+                })
+            }
+        } catch (error) {
+            console.log(error);
+    }}
+    
     return ( 
         <div className='add-assignment-form'>
             <TextInput
-                name = {"assignmentDescription"}
+                name = {"description"}
                 label={"Assignment Description:"}
                 type={"text"}
-                value={data.assignmentDescription}
+                value={data.description}
                 placeholder={"Enter assignment Description"}
                 onChange={handleDataChange}
             />
             <TextInput
-                name = {"assignmentDueDate"}
+                name = {"due_date"}
                 label={"Assignment Due Date:"}
                 type={"date"}
-                value={data.assignmentDueDate}
+                value={data.due_date}
                 placeholder={"Enter assignment Due Date"}
                 onChange={handleDataChange}
             />
-            <button className='teacher-option-btn submit'>Submit</button>
+            <button className='teacher-option-btn submit' onClick={postAssignmentHandler}>Submit</button>
         </div>
     );
 }
