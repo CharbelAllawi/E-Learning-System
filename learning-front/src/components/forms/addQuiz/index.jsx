@@ -1,15 +1,19 @@
 import { useState } from "react";
 import TextInput from "../../inputField/Index";
 import "./styles.css"
-const AddQuizForm = () => {
+const AddQuizForm = ({course_id}) => {
 
         const [data, setData] = useState({
+            title:"Quiz",
+            description:"",
+            on_date:"",
             questionText: "",
             answerText1:"",
             answerText2:"",
             answerText3:"",
             answerText4:"",
-            correct:""
+            correct:"",
+            course_id: 1
         });
         
         const [questions, setQuestions] = useState([]);
@@ -37,12 +41,42 @@ const AddQuizForm = () => {
             setData({ ...data, [e.target.name]: e.target.value })
         }
         const handleSubmitClick = () => {
+
+            //
+            setData({
+                title:"Quiz",
+                description:"",
+                on_date:"",
+                questionText: "",
+                answerText1:"",
+                answerText2:"",
+                answerText3:"",
+                answerText4:"",
+                correct:"",
+                course_id: 1
+            })
             setQuestions([])
+            console.log(questions)
         }
 
     return ( 
         <div>
             <div className='add-quiz-form'>
+            <TextInput
+                name = {"description"}
+                label={"Description:"}
+                type={"text"}
+                value={data.description}
+                placeholder={"Enter the Description"}
+                onChange={handleDataChange}
+            />
+            <TextInput
+                name = {"on_date"}
+                label={"On date:"}
+                type={"date"}
+                value={data.on_date}
+                onChange={handleDataChange}
+            />
             <TextInput
                 name = {"questionText"}
                 label={"Question:"}
