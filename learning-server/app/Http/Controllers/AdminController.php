@@ -31,4 +31,15 @@ class AdminController extends Controller
 
         return json_encode(["result" => "success"]);
     }
+    public function deleteUserByEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            $user->delete();
+            return response()->json(['message' => 'User deleted successfully']);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    }
 }
