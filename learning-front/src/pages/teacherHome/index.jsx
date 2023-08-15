@@ -3,7 +3,7 @@ import SideBarCard from '../../components/studentCard';
 import { useState } from 'react';
 import AddQuizForm from '../../components/forms/addQuiz';
 import RecordAttendanceForm from '../../components/forms/recordAttendance';
-import SubmissionsForm from '../../components/forms/aubmissionsForm';
+import SubmissionsForm from '../../components/forms/submissionsForm';
 import './styles.css'
 
 const TeacherHome = () => {

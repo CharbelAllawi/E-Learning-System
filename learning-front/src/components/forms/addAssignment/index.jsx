@@ -2,12 +2,12 @@ import TextInput from '../../inputField/Index';
 import './styles.css'
 import { useState } from 'react';
 
-const AddAssignmentForm = () => {
+const AddAssignmentForm = ({course_id}) => {
     const [data, setData] = useState({
-        username: "",
-        assignmentTitle:"",
+        assignmentTitle:"Assignment",
         assignmentDescription:"",
-        assignmentDueDate:""
+        assignmentDueDate:"",
+        course_id: 1
     });
 
     const handleDataChange = (e) => {
@@ -16,14 +16,6 @@ const AddAssignmentForm = () => {
 
     return ( 
         <div className='add-assignment-form'>
-            <TextInput
-                name = {"assignmentTitle"}
-                label={"Assignment Title:"}
-                type={"text"}
-                value={data.assignmentTitle}
-                placeholder={"Enter assignment Title"}
-                onChange={handleDataChange}
-            />
             <TextInput
                 name = {"assignmentDescription"}
                 label={"Assignment Description:"}

@@ -1,0 +1,30 @@
+.submission-card-div{
+    width: 100%;
+    height: 50px;
+    padding: 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 3px solid rgb(0, 123, 255);
+    background-color: rgba(0, 123, 255, 0.1);
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
+}
+
+.submission-card-right{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.submission-card-left{
+    display: flex;
+    flex-direction: column;
+}
+
+.grade-input{
+    width: 70px;
+}
+
+.grade-card-btn{
+    height: 80%;
+    font-size: 0.8rem;
+}
