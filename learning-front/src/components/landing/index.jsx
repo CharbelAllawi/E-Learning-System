@@ -7,15 +7,9 @@ import LoginForm from "../forms/login";
 const LandingPage = () => {
     localStorage.clear()
     const [showSignIn, setShowSignIn] = useState(false)
-    const [usertype, setUSerType] = useState('')
 
-    const handleSignInUserType = (usertype) => {
-        setUSerType(usertype)
-        setShowSignIn(true)
-    }
     return ( 
         <>
-            {/* <NavBar/> */}
             <div className="landing-container">
                 <div className="landing-left">
                     <span className="landing-title">Learn without limits</span>
@@ -25,9 +19,7 @@ const LandingPage = () => {
                         {
                         (!showSignIn? 
                             <>
-                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Teacher')}>Sign in As Teacher</button> 
-                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Student')}>Sign in As Student</button> 
-                                <button className="landing-signin-btn" onClick={()=>handleSignInUserType('Parent')}>Sign in As Parent</button> 
+                                <button className="landing-signin-btn" onClick={()=>setShowSignIn(true)}>Sign in</button> 
                             </>
                             : '')
                         }
@@ -36,7 +28,7 @@ const LandingPage = () => {
                 <div className="landing-right">
 
                     {
-                        (showSignIn? <LoginForm userType={usertype}/> : <img src={landingImg}/>)
+                        (showSignIn? <LoginForm/> : <img src={landingImg}/>)
                     }
                     
                 </div>
