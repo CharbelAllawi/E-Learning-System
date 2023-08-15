@@ -34,7 +34,7 @@ const TeacherHome = () => {
         } else if (shownForm === "quiz") {
                 return <AddQuizForm classInfo={courseData}/>
         } else if (shownForm === "attendance") {
-                return <RecordAttendanceForm/>
+                return <RecordAttendanceForm classInfo={courseData}/>
         } else if (shownForm === "submissions") {
             return <SubmissionsForm/>
         }

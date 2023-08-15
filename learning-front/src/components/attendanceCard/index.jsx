@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./styles.css"
 
-const AttendanceCard = () => {
+const AttendanceCard = ({info, studentInfo}) => {
 
     const [data, setData] = useState({
         is_present: false,
-        feedback:"",
-        course_id: 1,
-        student_id: 1
+        course_id: info.id,
+        student_id: studentInfo.id
     })
 
     const handleDataChange = (e) => {
@@ -16,13 +15,13 @@ const AttendanceCard = () => {
 
 
     const handlePresence = () => {
-        
+        console.log(data)
     }
 
     return ( 
         <div className="attendance-card-div">
             <div className="attendance-card-left">
-                <span>student name</span>
+                <span>{studentInfo.name}</span>
             </div>
             
             <div className="submission-card-right">
