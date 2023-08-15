@@ -77,4 +77,19 @@ class TeacherController extends Controller
             return response()->json(['message' => 'success'], 201);
         }
     }
+
+    public function assignment(Request $request)
+    {
+        $student_id = $request->student_id;
+        $feedback = $request->feedback;
+        $grade = $request->grade;
+        $assignment_id = $request->assignment_id;
+        $material = Material::where('assignment_id', $assignment_id)
+            ->where('student_id', $student_id)
+            ->first();
+        $material->feedback = $feedback;
+        $material->grade =  $grade;
+        $material->save();
+        return response()->json(['message' => 'success']);
+    }
 }
