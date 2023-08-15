@@ -24,6 +24,7 @@ Route::get('getstudents', [ParentController::class, 'getStudents']);
 Route::post('getattendance', [AttendanceController::class, 'getattendance']);
 Route::get('get_teacher_courses', [TeacherController::class, 'getTeacherCourses']);
 Route::post("send-email", [MailerController::class, "composeEmail"]);
+Route::post("addquiz", [TeacherController::class, "addQuiz"]);
 
 Route::controller(AuthController::class)->group(function () {
 

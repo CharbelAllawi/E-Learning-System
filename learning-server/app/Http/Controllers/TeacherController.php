@@ -6,9 +6,12 @@ use App\Models\Assignment;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Material;
+use App\Models\Quiz;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class TeacherController extends Controller
 {
@@ -37,6 +40,41 @@ class TeacherController extends Controller
             return response()->json([
                 'error' => 'Not authorized',
             ], 401);
+        }
+    }
+    public function addQuiz(Request $request)
+    {
+        $mainCourseID = $request->course_id;
+        $quiz = new Quiz([
+            'content' => $request->content,
+            'on_date' => Carbon::parse($request['on_date'])
+        ]);
+
+        $quiz->save();
+        $quiz_id = $quiz->id;
+        $courses = Course::all();
+        foreach ($courses as $course) {
+            $course_id = $course->id;
+            if ($course_id == $mainCourseID) {
+                $enrollments = Enrollment::all();
+                foreach ($enrollments as $enrollment) {
+                    if ($enrollment['course_id'] == $course_id) {
+                        $student_id = $enrollment->student_id;
+                        $material = new Material(
+                            [
+                                'title' => 'Quiz',
+                                'description' => $request->description,
+                                'course_id' => $course_id,
+                                'student_id' => $student_id,
+                                'quiz_id' => $quiz_id
+
+                            ]
+                        );
+                        $material->save();
+                    }
+                }
+            }
+            return response()->json(['message' => 'success'], 201);
         }
     }
 }
