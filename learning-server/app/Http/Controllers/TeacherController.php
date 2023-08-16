@@ -23,7 +23,18 @@ class TeacherController extends Controller
             $teacher_id = Auth::user()->id;
             $courses = Course::where('teacher_id', $teacher_id)->get();
         }
+        $now = Carbon::now();
         foreach ($courses as $course) {
+            $start_at = Carbon::parse($course->start_at);
+            $end_at = Carbon::parse($course->end_at);
+            $course_duration = $end_at->diffInDays($start_at);
+            $days_elapsed = $now->diffInDays($start_at);
+            if ($course_duration > 0) {
+                $completion_rate = min(($days_elapsed / $course_duration) * 100, 100);
+            } else {
+                $completion_rate = 100;
+            }
+            $course->completion_rate = $completion_rate;
             $course->student_count = Enrollment::where('course_id', $course->id)->count();
             $enrolledStudentIds = Enrollment::where('course_id',  $course->id)->pluck('student_id');
             $enrolledStudents = User::whereIn('id', $enrolledStudentIds)->get(['id', 'name']);

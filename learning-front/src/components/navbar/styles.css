@@ -1,11 +1,14 @@
 .navbar{
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgb(31, 31, 31);
     height: 65px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px 0;
     border-bottom: 3px solid rgb(0, 123, 255);
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 
 .navbar-btns-div{

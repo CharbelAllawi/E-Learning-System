@@ -22,6 +22,6 @@ class AuthAdmin
             return $next($request);
         }
 
-        return $next($request);
+        return response()->json(['message' => 'error']);
     }
 }

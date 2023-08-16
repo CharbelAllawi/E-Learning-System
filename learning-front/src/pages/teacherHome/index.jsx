@@ -5,6 +5,7 @@ import AddQuizForm from '../../components/forms/addQuiz';
 import RecordAttendanceForm from '../../components/forms/recordAttendance';
 import SubmissionsForm from '../../components/forms/submissionsForm';
 import { sendRequest } from "../../core/config/request";
+import ClassProgress from '../../components/progressBar';
 import './styles.css'
 
 const TeacherHome = () => {
@@ -48,7 +49,8 @@ const TeacherHome = () => {
                     <SideBarCard key={classInfo.id} name={classInfo.title} onCall={() => 
                         {setCourseData(classInfo)
                         setShownForm('')
-                        }}/>))
+                        }}/>
+                        ))
                 }
                 </div>
                 
@@ -56,10 +58,13 @@ const TeacherHome = () => {
                         <div className='teacher-options'>
                             {courseData  ?
                             <>
+                            <ClassProgress classInfo={courseData}/>
+                            <div className='teacher-option-btns'>
                                 <button className='teacher-option-btn' onClick={() => setShownForm('assignment')}>Add Assignment</button>
                                 <button className='teacher-option-btn' onClick={() => setShownForm('quiz')}>Add Quiz</button>
                                 <button className='teacher-option-btn' onClick={() => setShownForm('attendance')}>Record Attendance</button>
                                 <button className='teacher-option-btn' onClick={() => setShownForm('submissions')}>Submissions</button>
+                            </div>
                             </>: <h1>Choose a course</h1>}</div>
                     <div className='mmmm'> {chosenForm()}</div>
                     

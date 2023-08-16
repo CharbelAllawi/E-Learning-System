@@ -14,6 +14,9 @@
     gap: 1rem;
     padding: 20px 10px 20px;
     border-right: 1px solid rgba(0, 123, 255, 0.5);
+    position: sticky;
+    left: 0;
+    top:65px
 }
 
 .admin-right-panel{
@@ -25,4 +28,12 @@
     align-items: center;
     gap: 2rem;
     padding: 2rem;
+}
+
+.delete-btn{
+    background-color: rgb(250, 69, 69);
+}
+
+.delete-btn:hover{
+    background-color: rgb(231, 79, 79);
 }
