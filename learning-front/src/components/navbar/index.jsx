@@ -9,7 +9,7 @@ const NavBar = () => {
     const [showButtons, setShowButtons] = useState(true);
     const location = useLocation();
     useEffect(() => {
-        if (location.pathname === "/" || location.pathname === "/teacher"  || (localStorage.getItem('usertype') == "Parent")) {
+        if (location.pathname == "/" || (localStorage.getItem('usertype') != 4)) {
             setShowButtons(false);
         } else {
             setShowButtons(true);

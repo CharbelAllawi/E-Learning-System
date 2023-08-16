@@ -1,9 +1,9 @@
-.parents-home-body{
+.admin-home-body{
     display: flex;
 }
 
 
-.student-cards-container{
+.admin-course-cards-container{
     display: flex;
     flex-flow: column nowrap;
     scroll-behavior: smooth;
@@ -16,7 +16,7 @@
     border-right: 1px solid rgba(0, 123, 255, 0.5);
 }
 
-.Child-courses-contained{
+.admin-right-panel{
     display: flex;
     flex-wrap: wrap;
     height: fit-content;
@@ -25,10 +25,4 @@
     align-items: center;
     gap: 2rem;
     padding: 2rem;
-}
-
-.empty-child-course-container{
-    font-size: 2rem;
-    font-weight: 600;
-    padding-left: 40px;
 }

@@ -1,48 +1,106 @@
 import { useState } from "react";
 import TextInput from "../../inputField/Index";
 import "./styles.css"
-const AddQuizForm = () => {
+import { sendRequest } from '../../../core/config/request';
+const AddQuizForm = ({classInfo}) => {
 
-        const [data, setData] = useState({
+    const [data, setData] = useState({
+        description:"",
+        on_date:"",
+        questionText: "",
+        answerText1:"",
+        answerText2:"",
+        answerText3:"",
+        answerText4:"",
+        correct:"",
+    });
+
+    const [questions, setQuestions] = useState([]);
+
+    const handleAddClick = () => {
+        const question = {
+            questionText: data.questionText,
+            answerOptions: [
+                { answerText: data.answerText1, isCorrect: data.correct === "1" },
+                { answerText: data.answerText2, isCorrect: data.correct === "2" },
+                { answerText: data.answerText3, isCorrect: data.correct === "3" },
+                { answerText: data.answerText4, isCorrect: data.correct === "4" }
+            ]
+        }
+        setQuestions([...questions, question])
+        setData({
             questionText: "",
-            answerText1:"",
-            answerText2:"",
-            answerText3:"",
-            answerText4:"",
-            correct:""
-        });
-        
-        const [questions, setQuestions] = useState([]);
+            answerText1: "",
+            answerText2: "",
+            answerText3: "",
+            answerText4: "", 
+            description: data.description
+        })
+    }
+    const handleDataChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
 
-        const handleAddClick = () => {
-            const question = {
-                questionText: data.questionText,
-                answerOptions: [
-                    { answerText: data.answerText1, isCorrect: data.correct === "1" },
-                    { answerText: data.answerText2, isCorrect: data.correct === "2" },
-                    { answerText: data.answerText3, isCorrect: data.correct === "3" },
-                    { answerText: data.answerText4, isCorrect: data.correct === "4" }
-                ]
-            }
-            setQuestions([...questions, question])
-            setData({
-                questionText: "",
-                answerText1: "",
-                answerText2: "",
-                answerText3: "",
-                answerText4: ""
-            })
+    const handleSubmitClick = async () => {
+        const axiosData = {
+            description: data.description,
+            content: JSON.stringify(questions),
+            course_id: classInfo.id,
+            on_date: data.on_date
         }
-        const handleDataChange = (e) => {
-            setData({ ...data, [e.target.name]: e.target.value })
-        }
-        const handleSubmitClick = () => {
-            setQuestions([])
-        }
+        try {
+            const response = await sendRequest({
+                method: "POST",
+                route: "/api/addquiz",
+                body: axiosData,
+            });
+                if(response.message === "success"){
+                    try {
+                        const email_data = new FormData();
+                        email_data.append('course_id', classInfo.id)
+                        email_data.append('description', data.description)
+                        await sendRequest({
+                            method: "POST",
+                            route: "/api/send-email",
+                            body: email_data,
+                        });
+                    } catch (error) {
+                        console.log(error);
+                }
+                    setData({
+                        description:"",
+                        on_date:"",
+                        questionText: "",
+                        answerText1:"",
+                        answerText2:"",
+                        answerText3:"",
+                        answerText4:"",
+                        correct:"",
+                    })
+                    setQuestions([])
+                }
+        } catch (error) {
+            console.log(error);
+    }}
 
     return ( 
         <div>
             <div className='add-quiz-form'>
+            <TextInput
+                name = {"description"}
+                label={"Description:"}
+                type={"text"}
+                value={data.description}
+                placeholder={"Enter the Description"}
+                onChange={handleDataChange}
+            />
+            <TextInput
+                name = {"on_date"}
+                label={"On date:"}
+                type={"date"}
+                value={data.on_date}
+                onChange={handleDataChange}
+            />
             <TextInput
                 name = {"questionText"}
                 label={"Question:"}

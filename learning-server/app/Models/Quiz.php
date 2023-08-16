@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
+       protected $fillable = ['content', 'on_date'];
+
     use HasFactory;
 }

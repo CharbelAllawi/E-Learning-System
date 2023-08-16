@@ -22,7 +22,7 @@ class AuthController extends Controller
         }
         $credentials = $request->only('email', 'password');
         $token = Auth::attempt($credentials);
-        
+
         if (!$token) {
             return response()->json([
                 'message' => 'Unauthorized',
@@ -38,28 +38,28 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        try{
+        try {
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:8',
             ]);
-            } catch (\Throwable $e) {
-                return response()->json(["message" => 'failed']);
-            }
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->user_type_id = $request->user_type_id;
-            $user->password = Hash::make($request->password);
-            $user->save();
-            $token = Auth::login($user);
-            $user->token = $token;
-            
-            return response()->json([
-                'message' => 'User created successfully',
-                'user' => $user
-            ]);
+        } catch (\Throwable $e) {
+            return response()->json(["message" => 'failed']);
+        }
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->user_type_id = $request->user_type_id;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        $token = Auth::login($user);
+        $user->token = $token;
+
+        return response()->json([
+            'message' => 'User created successfully',
+            'user' => $user
+        ]);
     }
 
     public function logout()
