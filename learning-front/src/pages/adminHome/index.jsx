@@ -3,12 +3,15 @@ import SideBarCard from "../../components/studentCard";
 import { sendRequest } from "../../core/config/request";
 import { useState, useEffect } from "react";
 import "./styles.css"
+import ClassProgress from "../../components/progressBar";
 
 
 
 const AdminPage = () => {
 
     const [adminCourses, setAdminCourses] = useState([])
+    const [showAddCourseFrom, setShowAddCourseFrom] = useState(false)
+    const [courseData, setCourseData] = useState()
 
     useEffect(() => {
         const getAdminCoursesHandler = async () => {
@@ -29,19 +32,22 @@ const AdminPage = () => {
             <>
             <div className='admin-home-body'>
                 <div className='admin-course-cards-container'>
-                <button className='teacher-option-btn' onClick={() => setShownForm('assignment')}>Add Course</button>
+                <button className='teacher-option-btn'
+                    onClick={() => setShowAddCourseFrom(true)}
+                    >+ Add Course</button>
                 {adminCourses.map(classInfo => (
                     <SideBarCard key={classInfo.id} name={classInfo.title} 
-                        // onCall={() => 
-                        // {setCourseData(classInfo)
-                        // setShownForm('')
-                        // }}
+                        onCall={() => 
+                        {
+                        setCourseData(classInfo)
+                        setShowAddCourseFrom(false)
+                        }}
                         />))
                 }
                 
                 </div>
                 <div className='admin-right-panel'>
-                    <AddCourse/>
+                    {showAddCourseFrom? <AddCourse/> : <ClassProgress classInfo={courseData}/>}
                 </div>
             </div>
         </>
